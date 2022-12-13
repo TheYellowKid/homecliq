@@ -1,8 +1,12 @@
 import { Table } from "@nextui-org/react";
 import { Avatar } from "@nextui-org/react";
 import { Row } from "@nextui-org/react";
+import { IconButton } from "../../buttons/IconButton";
+import { EyeOpenIcon } from "@radix-ui/react-icons";
+import { Router, useRouter } from "next/router";
 
 export default function PendingListngsTable() {
+  const router = useRouter();
   return (
     <Table
       aria-label="Example table with static content"
@@ -17,6 +21,7 @@ export default function PendingListngsTable() {
         <Table.Column>Rent</Table.Column>
         <Table.Column>Owner / Agent</Table.Column>
         <Table.Column>Phone Number</Table.Column>
+        <Table.Column>{""}</Table.Column>
       </Table.Header>
       <Table.Body>
         <Table.Row key="1">
@@ -33,6 +38,13 @@ export default function PendingListngsTable() {
           <Table.Cell>$100 / month</Table.Cell>
           <Table.Cell>Elvin Kakomo</Table.Cell>
           <Table.Cell>+263775953491</Table.Cell>
+          <Table.Cell>
+            <IconButton
+              onClick={() => router.push("/dashboard/admin/pending-detail")}
+            >
+              <EyeOpenIcon />
+            </IconButton>
+          </Table.Cell>
         </Table.Row>
         <Table.Row key="1">
           <Table.Cell>
@@ -48,6 +60,13 @@ export default function PendingListngsTable() {
           <Table.Cell>$100 / month</Table.Cell>
           <Table.Cell>Elvin Kakomo</Table.Cell>
           <Table.Cell>+263775953491</Table.Cell>
+          <Table.Cell>
+            <IconButton
+              onClick={() => router.push("/dashboard/admin/pending-detail")}
+            >
+              <EyeOpenIcon />
+            </IconButton>
+          </Table.Cell>
         </Table.Row>
         <Table.Row key="1">
           <Table.Cell>
@@ -63,6 +82,13 @@ export default function PendingListngsTable() {
           <Table.Cell>$100 / month</Table.Cell>
           <Table.Cell>Elvin Kakomo</Table.Cell>
           <Table.Cell>+263775953491</Table.Cell>
+          <Table.Cell>
+            <IconButton
+              onClick={() => router.push("/dashboard/admin/pending-detail")}
+            >
+              <EyeOpenIcon />
+            </IconButton>
+          </Table.Cell>
         </Table.Row>
       </Table.Body>
     </Table>
