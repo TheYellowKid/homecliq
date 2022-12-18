@@ -7,7 +7,7 @@ export default function ListingDetails() {
   return (
     <div className="font-quicksand">
       <Navbar />
-      <SmallBanner />
+      <SmallBanner heading="Property Details" />
       <PropertyDetail />
       <Footer />
     </div>

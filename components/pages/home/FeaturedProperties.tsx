@@ -1,7 +1,9 @@
 import SqaureButton from "../../buttons/SquareButton";
 import PropertyCard from "../../cards/PropertyCard";
+import { useRouter } from "next/router";
 
 export default function FeaturedProperties() {
+  const router = useRouter();
   const property = {
     title: "3 Bedroom Apartment",
     location: "Mabvazuva, Rusape",
@@ -37,7 +39,10 @@ export default function FeaturedProperties() {
       </div>
       <div className="items-center justify-center m-8">
         <div>
-          <SqaureButton text="View Listings" />
+          <SqaureButton
+            text="View Listings"
+            onClick={() => router.push("/listings")}
+          />
         </div>
       </div>
     </div>

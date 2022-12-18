@@ -1,6 +1,8 @@
 import YellowButton from "../../buttons/YellowButton";
+import { useRouter } from "next/router";
 
 export default function LandlordSection() {
+  const router = useRouter();
   return (
     <div
       className="relative grid grid-cols-2 gap-4 p-4 bg-pattern-bg"
@@ -24,7 +26,12 @@ export default function LandlordSection() {
           become part of our landlords
         </text>
         <div>
-          <YellowButton text="List Property Now" />
+          <YellowButton
+            text="List Property Now"
+            onClick={() => {
+              router.push("/dashboard");
+            }}
+          />
         </div>
       </div>
     </div>
