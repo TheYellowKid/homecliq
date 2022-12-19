@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 export default function TenandApplicationForm() {
   const router = useRouter();
   return (
-    <div className="w-1/4 p-8 bg-white rounded shadow-lg">
-      <text className="text-xl font-black">Enter Your Pesrnal Details</text>
+    <div className="w-1/2 p-8 bg-white rounded shadow-lg">
+      <text className="text-xl font-black">Enter Your Personal Details</text>
       <form className="flex flex-col gap-4">
         <div className="grid grid-cols-2 gap-2">
           <Input placeholder="First Name" type="email" />

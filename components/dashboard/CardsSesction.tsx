@@ -10,23 +10,19 @@ export default function CardsSection() {
     {
       title: "Total Landlords",
       count: 50,
-      icon: "HomeIcon",
+      icon: "PersonIcon",
     },
-    {
-      title: "Total Tenands",
-      count: 200,
-      icon: "HomeIcon",
-    },
+
     {
       title: "Done Deals",
       count: 450,
-      icon: "HomeIcon",
+      icon: "CheckCircledIcon",
     },
   ];
   return (
-    <div className="grid grid-cols-4 gap-12">
+    <div className="grid grid-cols-3 gap-12">
       {cards.map((card) => (
-        <DashboardCard title={card.title} count={card.count} />
+        <DashboardCard title={card.title} count={card.count} icon={card.icon} />
       ))}
     </div>
   );
