@@ -1,7 +1,48 @@
 import PageFilter from "../../filters/PageFilter";
 import PropertyCard from "../../cards/PropertyCard";
+import { collection, getDocs } from "firebase/firestore";
+import { fireStore } from "../../../firebase";
+import { useState, useEffect } from "react";
+
+interface PropertyObject {
+  contactmethod: string;
+  description: string;
+  images: [string];
+  isApproved: boolean;
+  location: string;
+  owneremail: string;
+  ownername: string;
+  ownerphone: string;
+  ownersurname: string;
+  rent: number;
+  title: string;
+  towncity: string;
+}
 
 export default function ListingsTab() {
+  const [listings, setListings] = useState<PropertyObject[]>([]);
+  const [propertyIds, setPropertyIds] = useState<string[]>([]);
+
+  const querySnapshot = getDocs(collection(fireStore, "properties"));
+  const getListings = async () => {
+    const data: PropertyObject[] = [];
+    const ids: string[] = [];
+    await querySnapshot.then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().isApproved === true) {
+          data.push(doc.data() as PropertyObject);
+          ids.push(doc.id);
+        }
+      });
+    });
+    setListings(data);
+    setPropertyIds(ids);
+  };
+
+  useEffect(() => {
+    getListings();
+  }, []);
+
   const property = {
     title: "3 Bedroom Apartment",
     location: "Mabvazuva, Rusape",
@@ -18,14 +59,21 @@ export default function ListingsTab() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4 mt-4">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-          <PropertyCard
-            title={property.title}
-            image={property.image}
-            rent={property.rent}
-            location={property.location}
-          />
-        ))}
+        {listings.length > 0 ? (
+          listings.map((property, i) => (
+            <PropertyCard
+              title={property.title}
+              image={property.images[0]}
+              rent={property.rent}
+              location={property.location}
+              id={propertyIds[i]}
+            />
+          ))
+        ) : (
+          <div className="items-center justify-center flex">
+            <text>no properties found</text>
+          </div>
+        )}
       </div>
     </div>
   );

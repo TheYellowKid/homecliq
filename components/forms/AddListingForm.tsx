@@ -10,25 +10,25 @@ export default function AddListingForm() {
       <form className="grid grid-cols-2 gap-4">
         <div className="flex flex-col gap-1">
           <text>Title</text>
-          <Input placeholder="eg One Room" type="text" />
+          <Input placeholder="eg One Room" type="text" onChange={() => {}} />
         </div>
         <div className="flex flex-col gap-1">
           <text>Monthly Rent</text>
-          <Input placeholder="eg 100" type="number" />
+          <Input placeholder="eg 100" type="number" onChange={() => {}} />
         </div>
         <div className="flex flex-col gap-1">
           <text>Town / City</text>
-          <Input placeholder="Harare" type="text" />
+          <Input placeholder="Harare" type="text" onChange={() => {}} />
         </div>
         <div className="flex flex-col gap-1">
           <text>Location</text>
-          <Input placeholder="Waterfalls" type="text" />
+          <Input placeholder="Waterfalls" type="text" onChange={() => {}} />
         </div>
-        <div className="flex flex-col gap-1 col-span-2">
+        <div className="flex flex-col col-span-2 gap-1">
           <text>Images</text>
           <ImageDropzone />
         </div>
-        <div className="flex flex-col gap-1 col-span-2">
+        <div className="flex flex-col col-span-2 gap-1">
           <text>Description</text>
           <textarea
             rows={5}
@@ -36,7 +36,7 @@ export default function AddListingForm() {
             className="p-2 border-2 border-gray-500 rounded"
           />
         </div>
-        <div className="flex flex-col gap-1 col-span-2">
+        <div className="flex flex-col col-span-2 gap-1">
           <text>Amenities</text>
           <div className="grid grid-cols-4">
             <div className="flex items-center justify-center gap-2">

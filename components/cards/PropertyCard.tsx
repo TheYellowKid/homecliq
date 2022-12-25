@@ -6,17 +6,24 @@ interface PropertyCardProps {
   location: string;
   rent: number;
   image: string;
+  id: string;
 }
 export default function PropertyCard({
   title,
   location,
   rent,
   image,
+  id,
 }: PropertyCardProps) {
   return (
     <div className="flex flex-col bg-white rounded shadow">
       <div>
-        <Link href="/listing-details">
+        <Link
+          href={{
+            pathname: "/listing-details",
+            query: { id: id },
+          }}
+        >
           <img
             src={image}
             alt="property"
@@ -27,7 +34,12 @@ export default function PropertyCard({
       </div>
       <div className="flex flex-col p-4">
         <div>
-          <Link href="listing-details">
+          <Link
+            href={{
+              pathname: "/listing-details",
+              query: { id: id },
+            }}
+          >
             <h3 className="text-xl font-bold">{title}</h3>
           </Link>
           <h3 className="text-base font-normal">{location}</h3>
@@ -35,7 +47,12 @@ export default function PropertyCard({
         </div>
         <hr className="my-4" />
         <div className="flex flex-row-reverse">
-          <Link href="/listing-details">
+          <Link
+            href={{
+              pathname: "/listing-details",
+              query: { id: id },
+            }}
+          >
             <text className="flex items-center gap-2">
               <EyeOpenIcon />
               View
