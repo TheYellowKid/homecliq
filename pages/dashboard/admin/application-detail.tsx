@@ -50,7 +50,18 @@ export default function ApplicationDetails() {
           <PropetyGallery images={property ? property.images : [""]} />
         </div>
         <div>
-          <ApplicationDetailSideBar />
+          <ApplicationDetailSideBar
+            title={property ? property.title : ""}
+            rent={property ? property.rent : 0}
+            agent={
+              property ? property.ownername + " " + property.ownersurname : ""
+            }
+            agentemail={property ? property.owneremail : ""}
+            agentphone={property ? property.ownerphone : ""}
+            id={id as string}
+            location={property ? property.location : ""}
+            towncity={property ? property.towncity : ""}
+          />
         </div>
         <div className="flex flex-col col-span-4 gap-4 p-4">
           <text className="text-xl font-bold">Description</text>
