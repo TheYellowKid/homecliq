@@ -19,6 +19,13 @@ export default function LoginForm() {
       const user = doc.data();
       if (user.uid === uid) {
         if (user.role === "admin") {
+          localStorage.setItem("role", user.role);
+          localStorage.setItem("firstname", user.firstname);
+          localStorage.setItem("lastname", user.lastname);
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("phonenumber", user.phonenumber);
+          localStorage.setItem("uid", user.uid);
+
           router.push("/dashboard/admin/");
         } else {
           router.push("/dashboard/agent/");
@@ -52,11 +59,13 @@ export default function LoginForm() {
         }}
       >
         <Input
+          required
           placeholder="email"
           type="email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
+          required
           placeholder="password"
           type="password"
           onChange={(e) => setPassword(e.target.value)}

@@ -8,8 +8,23 @@ import {
   HomeIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { auth } from "../../../firebase";
 
 export default function AgentDashboardSidebar() {
+  const router = useRouter();
+
+  const signOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        router.push("/dashboard");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
   return (
     <div className="flex flex-col p-4 bg-white rounded shadow">
       <div className="flex items-center justify-center p-4">
@@ -54,12 +69,12 @@ export default function AgentDashboardSidebar() {
             <text className="text-base">Settings</text>
           </div>
         </Link>
-        <Link href="#">
+        <a onClick={signOut}>
           <div className="flex items-center gap-4">
             <ExitIcon />
             <text className="text-base">Logout</text>
           </div>
-        </Link>
+        </a>
       </div>
     </div>
   );

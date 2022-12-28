@@ -1,12 +1,18 @@
 import { type } from "os";
 
 interface InputProps {
+  required: boolean;
   placeholder: string;
   type: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Input({ placeholder, type, onChange }: InputProps) {
+export default function Input({
+  placeholder,
+  type,
+  onChange,
+  required = false,
+}: InputProps) {
   return (
     <div className="">
       <input
@@ -14,6 +20,7 @@ export default function Input({ placeholder, type, onChange }: InputProps) {
         placeholder={placeholder}
         type={type}
         onChange={onChange}
+        required={required}
       />
     </div>
   );
