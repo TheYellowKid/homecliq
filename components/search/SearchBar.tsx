@@ -15,7 +15,7 @@ export default function SearchBar() {
         placeholder="Location"
         options={["Harare", "Bulawayo", "Marondera", "Rusape"]}
       />
-      <SqaureButton text="Search" />
+      <SqaureButton text="Search" onClick={() => {}} />
     </div>
   );
 }
