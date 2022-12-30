@@ -56,31 +56,37 @@ export default function SignUpForm() {
         }}
       >
         <Input
+          required={true}
           placeholder="first name"
           type="text"
           onChange={(e) => setFirstname(e.target.value)}
         />
         <Input
+          required={true}
           placeholder="last name"
           type="text"
           onChange={(e) => setLastname(e.target.value)}
         />
         <Input
+          required={true}
           placeholder="phone number"
           type="number"
           onChange={(e) => setPhonenumber(e.target.value)}
         />
         <Input
+          required={true}
           placeholder="email"
           type="email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
+          required={true}
           placeholder="password"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <Input
+          required={true}
           placeholder="confirm password"
           type="password"
           onChange={(e) => setPassword(e.target.value)}

@@ -42,21 +42,25 @@ export default function TenandApplicationForm({ id }: PropertyId) {
       <form className="flex flex-col gap-4" onSubmit={submitForm}>
         <div className="grid grid-cols-2 gap-2">
           <Input
+            required={true}
             placeholder="First Name"
             type="text"
             onChange={(e) => setFirstname(e.target.value)}
           />
           <Input
+            required={true}
             placeholder="Last Name"
             type="text"
             onChange={(e) => setLastname(e.target.value)}
           />
           <Input
+            required={true}
             placeholder="Phone Number"
             type="number"
             onChange={(e) => setPhonenumber(e.target.value)}
           />
           <Input
+            required={true}
             placeholder="Email"
             type="email"
             onChange={(e) => setEmail(e.target.value)}

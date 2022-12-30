@@ -6,7 +6,7 @@ export default function UserFeedbackForm() {
       <form className="items-center justify-center w-full">
         <textarea className="w-1/2" rows={10} />
         <div className="flex flex-row-reverse w-1/2">
-          <SqaureButton text="submit" />
+          <SqaureButton text="submit" onClick={() => {}} />
         </div>
       </form>
     </div>
