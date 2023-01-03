@@ -27,10 +27,14 @@ export default function AgentPendingListngsTable() {
 
   const [listings, setListings] = useState<PropertyObject[]>([]);
   const [propertyIds, setPropertyIds] = useState<string[]>([]);
-  const agent  = localStorage.getItem("email");
+  let agent: string = "";
 
   const querySnapshot = getDocs(collection(fireStore, "properties"));
   const getListings = async () => {
+    if (typeof window !== 'undefined') {
+      // code that accesses localStorage goes here
+       agent  = localStorage.getItem("email") as string;
+      }
     const data: PropertyObject[] = [];
     const ids: string[] = [];
     await querySnapshot.then((querySnapshot) => {
