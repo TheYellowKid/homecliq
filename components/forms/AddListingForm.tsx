@@ -164,7 +164,7 @@ export default function AddListingForm() {
           handleSubmit();
         }}
       >
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col col-span-2 md:col-span-1  gap-1">
           <text>Title</text>
           <Input
             required
@@ -175,7 +175,7 @@ export default function AddListingForm() {
             }}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col col-span-2 md:col-span-1 gap-1">
           <text>Monthly Rent</text>
           <Input
             required
@@ -186,7 +186,7 @@ export default function AddListingForm() {
             }}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col col-span-2 md:col-span-1 gap-1">
           <text>Town / City</text>
           <Input
             required
@@ -197,7 +197,7 @@ export default function AddListingForm() {
             }}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col col-span-2 md:col-span-1 gap-1">
           <text>Location</text>
           <Input
             required
@@ -252,7 +252,7 @@ export default function AddListingForm() {
         <div className="flex flex-col col-span-2 gap-1">
           <text>Amenities</text>
           <div className="grid grid-cols-4">
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="parking"
@@ -262,7 +262,7 @@ export default function AddListingForm() {
               />
               <text>Parking Space</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="borehole"
@@ -274,7 +274,7 @@ export default function AddListingForm() {
               />
               <text>Borehole</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="zesa"
@@ -286,7 +286,7 @@ export default function AddListingForm() {
               />
               <text>ZESA</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="durawall"
@@ -298,7 +298,7 @@ export default function AddListingForm() {
               />
               <text>Durawall / Fence</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="inclusivebills"
@@ -310,7 +310,7 @@ export default function AddListingForm() {
               />
               <text>Bills Inclusive</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="sharedbathroom"
@@ -322,7 +322,7 @@ export default function AddListingForm() {
               />
               <text>Shared Bathroom</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="ownentrance"
@@ -334,7 +334,7 @@ export default function AddListingForm() {
               />
               <text>Own Entrace</text>
             </div>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center col-span-2 md:col-span-1 justify-center gap-2">
               <input
                 type="checkbox"
                 id="ensuite"
