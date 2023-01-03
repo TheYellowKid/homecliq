@@ -24,6 +24,11 @@ export default function AddListingForm() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [totalImages, setTotalImages] = useState(0);
   const [currentUploadingImage, setCurrentUploadingImage] = useState(0);
+  const [ownerphone, setOwnerPhone] = useState("");
+  const [ownername, setOwnerName] = useState("");
+  const [ownersurname, setOwnerSurname] = useState("");
+  const [owneremail, setOwnerEmail] = useState("");
+
 
   const uploadImage = async (file: File) => {
     const storedImages = [];
@@ -117,6 +122,14 @@ export default function AddListingForm() {
   };
 
   const handleSubmit = () => {
+    if (typeof window !== 'undefined') {
+      // code that accesses localStorage goes here
+      setOwnerPhone(localStorage.getItem("phonenumber") as string);
+      setOwnerName(localStorage.getItem("firstname") as string);
+      setOwnerSurname(localStorage.getItem("lastname") as string);
+      setOwnerEmail(localStorage.getItem("email") as string);
+       
+      }
     try {
       const property = addDoc(collection(fireStore, "properties"), {
         title: title,
@@ -126,10 +139,10 @@ export default function AddListingForm() {
         rent: rent,
         amenities: amenities,
         isApproved: false,
-        ownerphone: localStorage.getItem("phonenumber"),
-        owneremail: localStorage.getItem("email"),
-        ownername: localStorage.getItem("firstname"),
-        ownersurname: localStorage.getItem("lastname"),
+        ownerphone: ownerphone,
+        owneremail: owneremail,
+        ownername: ownername,
+        ownersurname: ownername,
         images: imagesURLs,
       });
       alert(
