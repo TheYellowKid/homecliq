@@ -28,6 +28,13 @@ export default function LoginForm() {
 
           router.push("/dashboard/admin/");
         } else {
+          localStorage.setItem("role", user.role);
+          localStorage.setItem("firstname", user.firstname);
+          localStorage.setItem("lastname", user.lastname);
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("phonenumber", user.phonenumber);
+          localStorage.setItem("uid", user.uid);
+
           router.push("/dashboard/agent/");
         }
         return;
@@ -49,7 +56,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-1/4 p-8 bg-white rounded shadow-lg">
+    <div className="w-10/12 md:w-1/4 p-8 bg-white rounded shadow-lg">
       <text className="text-xl font-black">Login</text>
       <form
         className="flex flex-col gap-4"

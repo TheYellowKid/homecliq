@@ -16,7 +16,7 @@ export default function Input({
   return (
     <div className="">
       <input
-        className="w-full h-12 p-2 border-2 border-gray-500 rounded"
+        className="w-full h-12 p-2 border-2 border-gray-500 rounded my-1"
         placeholder={placeholder}
         type={type}
         onChange={onChange}

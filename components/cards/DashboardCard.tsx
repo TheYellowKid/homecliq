@@ -16,7 +16,7 @@ export default function DashboardCard({
   icon,
 }: DashboardCardProps) {
   return (
-    <div className="flex flex-col w-56 p-4 bg-white rounded-sm shadow-lg h-36">
+    <div className="flex flex-col w-full  sm:w-56 p-4 bg-white rounded-sm shadow-lg h-36">
       <div className="flex items-center justify-between h-32">
         {icon === "HomeIcon" ? (
           <HomeIcon height={40} width={40} />

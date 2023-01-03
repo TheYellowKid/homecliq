@@ -135,8 +135,9 @@ export default function AddListingForm() {
       alert(
         "Your Listing has been submitted and will be available on the platform once it has been approved"
       );
+      router.push("/dashboard/agent/my-listings");
     } catch (error) {
-      //alert("Error adding document: ", error);
+      //alert("Error adding document: ", error.message);
       console.log(error);
     }
   };

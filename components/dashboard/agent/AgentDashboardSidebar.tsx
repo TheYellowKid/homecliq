@@ -26,7 +26,7 @@ export default function AgentDashboardSidebar() {
   };
 
   return (
-    <div className="flex flex-col p-4 bg-white rounded shadow">
+    <div className="md:flex md:flex-col p-4 bg-white rounded shadow hidden ">
       <div className="flex items-center justify-center p-4">
         <text className="text-2xl font-black tracking-tight text-blue-900">
           HOMECLICK

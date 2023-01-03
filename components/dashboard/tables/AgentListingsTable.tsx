@@ -4,8 +4,52 @@ import { Row } from "@nextui-org/react";
 import { IconButton } from "../../buttons/IconButton";
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
+import { collection, getDocs } from "firebase/firestore";
+import { fireStore } from "../../../firebase";
+import { useState, useEffect } from "react";
+
+
+interface PropertyObject {
+  description: string;
+  images: [string];
+  isApproved: boolean;
+  location: string;
+  owneremail: string;
+  ownername: string;
+  ownerphone: string;
+  ownersurname: string;
+  rent: number;
+  title: string;
+  towncity: string;
+}
 
 export default function AgentListingsTable() {
+
+  const [listings, setListings] = useState<PropertyObject[]>([]);
+  const [propertyIds, setPropertyIds] = useState<string[]>([]);
+  const agent  = localStorage.getItem("email");
+
+  const querySnapshot = getDocs(collection(fireStore, "properties"));
+  const getListings = async () => {
+    const data: PropertyObject[] = [];
+    const ids: string[] = [];
+    await querySnapshot.then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().isApproved === true && doc.data().owneremail === agent) {
+          data.push(doc.data() as PropertyObject);
+          ids.push(doc.id);
+        }
+      });
+    });
+    setListings(data);
+    setPropertyIds(ids);
+  };
+
+  useEffect(() => {
+    getListings();
+  }, []);
+
+
   const router = useRouter();
   return (
     <Table
@@ -21,67 +65,30 @@ export default function AgentListingsTable() {
         <Table.Column>Rent</Table.Column>
         <Table.Column>{""}</Table.Column>
       </Table.Header>
-      <Table.Body>
-        <Table.Row key="1">
-          <Table.Cell>
-            <Row align="center">
-              <Avatar
-                squared
-                src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-              />
-              One Room
-            </Row>
-          </Table.Cell>
-          <Table.Cell>Harare, Avondale</Table.Cell>
-          <Table.Cell>$100 / month</Table.Cell>
-          <Table.Cell>
-            <IconButton
-              onClick={() => router.push("/dashboard/admin/listing-details")}
-            >
-              <EyeOpenIcon />
-            </IconButton>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row key="1">
-          <Table.Cell>
-            <Row align="center">
-              <Avatar
-                squared
-                src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-              />
-              One Room
-            </Row>
-          </Table.Cell>
-          <Table.Cell>Harare,avondale</Table.Cell>
-          <Table.Cell>$100 / month</Table.Cell>
-          <Table.Cell>
-            <IconButton
-              onClick={() => router.push("/dashboard/admin/listing-details")}
-            >
-              <EyeOpenIcon />
-            </IconButton>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row key="1">
-          <Table.Cell>
-            <Row align="center">
-              <Avatar
-                squared
-                src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-              />
-              One Room
-            </Row>
-          </Table.Cell>
-          <Table.Cell>Harare,avondale</Table.Cell>
-          <Table.Cell>$100 / month</Table.Cell>
-          <Table.Cell>
-            <IconButton
-              onClick={() => router.push("/dashboard/admin/listing-details")}
-            >
-              <EyeOpenIcon />
-            </IconButton>
-          </Table.Cell>
-        </Table.Row>
+      <Table.Body>      
+        { listings? listings.map((listing, index) => (
+           <Table.Row key={index}>
+           <Table.Cell>
+             <Row align="center">
+             <Avatar squared src={listing.images[0]} />
+                  {listing.title}
+             </Row>
+           </Table.Cell>
+           <Table.Cell>{listing.location}</Table.Cell>
+           <Table.Cell>${listing.rent} month</Table.Cell>
+           <Table.Cell>
+             <IconButton
+               onClick={() => router.push("/dashboard/admin/listing-details")}
+             >
+               <EyeOpenIcon />
+             </IconButton>
+           </Table.Cell>
+         </Table.Row>
+         )):(
+          <div>
+            <p>No Listings Found</p>
+          </div>
+         )}
       </Table.Body>
     </Table>
   );

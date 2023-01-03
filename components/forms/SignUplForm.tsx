@@ -43,13 +43,13 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="flex flex-col w-1/3 p-8 bg-white rounded shadow-lg">
+    <div className="flex flex-col w-10/12 md:w-1/3 p-8 bg-white rounded shadow-lg">
       <text className="text-xl font-black">Sign Up</text>
       <text className="text-sm text-gray-500">
         Fill in this form to create yout account.
       </text>
       <form
-        className="grid grid-cols-2 gap-4"
+        className="flex-col md:grid md:grid-cols-2"
         onSubmit={(e) => {
           e.preventDefault();
           signUpUser();
