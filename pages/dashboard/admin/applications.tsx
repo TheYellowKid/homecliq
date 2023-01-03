@@ -12,7 +12,7 @@ export default function Applications() {
         </div>
         <div className="col-span-3 gap-8 mt-12">
           <text className="my-12 text-3xl font-bold">Applications</text>
-          <ApplicationsTable />
+          {/* <ApplicationsTable  /> */}
         </div>
       </div>
     </div>
