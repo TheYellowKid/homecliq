@@ -55,8 +55,8 @@ export default function ApplicationsTable({
       </Table.Header>
       <Table.Body>
         {applications.length > 0 ? (
-          applications.map((application) => (
-            <Table.Row key="1">
+          applications.map((application, i) => (
+            <Table.Row key={i}>
               <Table.Cell>
                 {application.applicantname} {application.applicantsurname}
               </Table.Cell>
@@ -79,7 +79,7 @@ export default function ApplicationsTable({
             </Table.Row>
           ))
         ) : (
-          <Table.Row key="1">
+          <Table.Row>
             <Table.Cell>No Applications found</Table.Cell>
             <Table.Cell>{""}</Table.Cell>
             <Table.Cell>{""}</Table.Cell>

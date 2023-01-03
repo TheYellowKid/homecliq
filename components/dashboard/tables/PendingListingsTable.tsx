@@ -66,7 +66,7 @@ export default function PendingListngsTable() {
       <Table.Body>
         {listings.length > 0 ? (
           listings.map((property, i) => (
-            <Table.Row key="1">
+            <Table.Row key={i}>
               <Table.Cell>
                 <Row align="center">
                   <Avatar squared src={property.images[0]} />
@@ -94,7 +94,7 @@ export default function PendingListngsTable() {
             </Table.Row>
           ))
         ) : (
-          <Table.Row key="1">
+          <Table.Row>
             <Table.Cell> No Pending listings found</Table.Cell>
             <Table.Cell>{""}</Table.Cell>
             <Table.Cell>{""}</Table.Cell>

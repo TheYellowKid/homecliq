@@ -34,7 +34,7 @@ export default function AgentApplicationsTable() {
             </IconButton>
           </Table.Cell>
         </Table.Row>
-        <Table.Row key="1">
+        <Table.Row key="2">
           <Table.Cell>One Room Avondale, Harare</Table.Cell>
           <Table.Cell>
             <StyledBadge type="vacation">active</StyledBadge>
@@ -47,7 +47,7 @@ export default function AgentApplicationsTable() {
             </IconButton>
           </Table.Cell>
         </Table.Row>
-        <Table.Row key="1">
+        <Table.Row key="3">
           <Table.Cell>One Room Avondale, Harare</Table.Cell>
           <Table.Cell>
             <StyledBadge type="paused">pending</StyledBadge>
