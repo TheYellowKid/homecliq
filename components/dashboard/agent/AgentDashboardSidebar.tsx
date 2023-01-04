@@ -63,12 +63,6 @@ export default function AgentDashboardSidebar() {
             <text className="text-base">Applications</text>
           </div>
         </Link>
-        <Link href="#">
-          <div className="flex items-center gap-4">
-            <GearIcon />
-            <text className="text-base">Settings</text>
-          </div>
-        </Link>
         <a onClick={signOut}>
           <div className="flex items-center gap-4">
             <ExitIcon />

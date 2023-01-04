@@ -35,7 +35,7 @@ export default function DashboardMobileNavbar() {
       >
         <HamburgerMenuIcon height={40} width={40} />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className=" p-4 bg-white rounded shadow">
+      <DropdownMenu.Content className=" p-4 bg-white rounded shadow z-50">
         <DropdownMenu.Item>
           <Link href="/dashboard/agent/">
             <div className="flex items-center gap-4">
@@ -73,14 +73,6 @@ export default function DashboardMobileNavbar() {
             <div className="flex items-center gap-4">
               <EnvelopeClosedIcon />
               <text className="text-base">Applications</text>
-            </div>
-          </Link>
-        </DropdownMenu.Item>
-        <DropdownMenu.Item>
-          <Link href="#">
-            <div className="flex items-center gap-4">
-              <GearIcon />
-              <text className="text-base">Settings</text>
             </div>
           </Link>
         </DropdownMenu.Item>
