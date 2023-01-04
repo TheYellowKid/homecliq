@@ -35,7 +35,7 @@ export default function DashboardMobileNavbar() {
       >
         <HamburgerMenuIcon height={40} width={40} />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className=" p-4 bg-white rounded shadow z-50">
+      <DropdownMenu.Content className="p-4 bg-white flex flex-col justify-between rounded shadow z-50 w-52 h-60">
         <DropdownMenu.Item>
           <Link href="/dashboard/agent/">
             <div className="flex items-center gap-4">
