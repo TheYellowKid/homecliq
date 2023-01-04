@@ -63,6 +63,7 @@ export default function AgentListingsTable() {
       css={{
         height: "auto",
         minWidth: "100%",
+        zIndex:0
       }}
     >
       <Table.Header>
