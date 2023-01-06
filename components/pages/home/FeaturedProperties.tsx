@@ -46,12 +46,12 @@ export default function FeaturedProperties() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-4 px-32 py-8">
-      <text className="text-xl font-semibold text-blue-900">
+    <div className="flex flex-col items-center gap-4 py-8">
+      <text className="text-sm md:text-xl font-semibold text-blue-900 text-center">
         ..Featured Properties..
       </text>
-      <text className="text-4xl font-bold">Explore Properties</text>
-      <div className="grid w-full grid-cols-3 gap-4 px-64">
+      <text className="text-xl md:text-4xl font-bold text-center">Explore Properties</text>
+      <div className="flex flex-col md:grid w-full md:grid-cols-3 gap-4 px-4 md:px-64">
         {featuredListings.length > 0 ? (
           featuredListings
             .slice(0, 3)

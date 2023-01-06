@@ -15,6 +15,7 @@ export default function PropertyCard({
   image,
   id,
 }: PropertyCardProps) {
+  
   return (
     <div className="flex flex-col bg-white rounded shadow">
       <div>

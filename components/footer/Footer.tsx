@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
     <div className="flex flex-col w-screen bg-blue-900">
-      <div className="grid grid-cols-4 p-32">
+      <div className="flex flex-col md:grid md:grid-cols-4 p-32">
         <div className="col-span-2">
-          <text className="text-6xl font-black text-white">HOMECLICQ</text>
+          <text className="text-2xl md:text-6xl font-black text-white">HOMECLICQ</text>
         </div>
         <div className="flex flex-col gap-4">
           <text className="text-lg font-black text-white">Quick links</text>

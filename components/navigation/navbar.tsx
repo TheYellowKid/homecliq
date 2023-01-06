@@ -1,13 +1,16 @@
 import RoundButton from "../buttons/RoundButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { HamburgerMenuIcon,} from "@radix-ui/react-icons";
 
 export default function Navbar() {
+
   const router = useRouter();
+
   return (
     <nav
-      className="sticky top-0 flex flex-wrap items-center justify-between w-screen p-6 bg-white shadow"
-      style={{ zIndex: 10 }}
+      className="sticky top-0 flex flex-wrap items-center justify-between w-screen p-6 bg-white shadow z-10"
     >
       <div className="flex items-center flex-shrink-0 mr-6 text-blue-900">
         <Link href="/">
@@ -15,18 +18,46 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="block lg:hidden">
-        <button className="flex items-center px-3 py-2 text-teal-200 border border-teal-400 rounded hover:text-white hover:border-white">
-          <svg
-            className="w-3 h-3 fill-current"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger
+            className="flex items-center justify-center flex-wrap md:hidden"
+            asChild
           >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
+            <HamburgerMenuIcon height={40} width={40} />
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content className="p-4 bg-white flex flex-col justify-between rounded shadow z-50 w-52 h-60">
+            <DropdownMenu.Item>
+              <Link
+                href="/"
+                className="block mt-4 mr-4 text-blue-900 lg:inline-block lg:mt-0 hover:text-black"
+              >
+                Home
+             </Link>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <Link
+                href="/listings"
+                className="block mt-4 mr-4 text-blue-900 lg:inline-block lg:mt-0 hover:text-black"
+              >
+                Listings
+              </Link>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <RoundButton
+                text="Add Listing"
+                onClick={() => router.push("/dashboard")}
+              />
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+               <RoundButton
+                text="My Account"
+                onClick={() => router.push("/dashboard")}
+              />
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
       </div>
-      <div className="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
+      <div className="hidden md:flex-grow md:block w-full md:flex md:items-center md:w-auto">
         <div className="text-base font-bold lg:flex-grow">
           <Link
             href="/"
@@ -35,7 +66,7 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            href="listings"
+            href="/listings"
             className="block mt-4 mr-4 text-blue-900 lg:inline-block lg:mt-0 hover:text-black"
           >
             Listings

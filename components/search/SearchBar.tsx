@@ -4,7 +4,7 @@ import DropdownInput from "./DropdownInput";
 export default function SearchBar() {
   return (
     <div
-      className="flex items-center justify-center gap-2 p-4 rounded"
+      className="flex flex-col md:flex-row items-center justify-center gap-2 p-4 rounded"
       style={{ backgroundColor: "#ffffff8c" }}
     >
       <DropdownInput
