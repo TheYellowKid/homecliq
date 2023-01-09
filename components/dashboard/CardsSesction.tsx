@@ -20,7 +20,7 @@ export default function CardsSection() {
     },
   ];
   return (
-    <div className="grid grid-cols-3 gap-12">
+    <div className="flex flex-col gap-4 p-4 md:flex-row">
       {cards.map((card) => (
         <DashboardCard title={card.title} count={card.count} icon={card.icon} />
       ))}
