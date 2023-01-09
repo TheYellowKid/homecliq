@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div className="flex flex-col w-screen bg-blue-900">
-      <div className="flex flex-colm md:grid md:grid-cols-4 p-32">
+      <div className="flex flex-col md:grid md:grid-cols-4 p-32">
         <div className="col-span-2">
           <text className="text-2xl md:text-6xl font-black text-white">HOMECLICQ</text>
         </div>
