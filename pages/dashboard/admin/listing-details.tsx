@@ -45,7 +45,7 @@ export default function ListingDetails() {
   return (
     <>
       <DashboardNavbar />
-      <div className="grid grid-cols-4 py-32 px-96">
+      <div className="flex flex-col md:grid md:grid-cols-4 md:py-32 md:px-96 p-4">
         <div className="flex flex-col col-span-3">
           <PropetyGallery images={property ? property.images : [""]} />
         </div>

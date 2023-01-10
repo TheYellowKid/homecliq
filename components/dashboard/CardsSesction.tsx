@@ -7,7 +7,6 @@ interface CardProps {
   totalListings: number;
   totalApplications: number;
   doneDeals: number;
-  isAdmin: boolean
 }
 export default function CardsSection({ totalListings, totalApplications, doneDeals }: CardProps) {
   const cards = [

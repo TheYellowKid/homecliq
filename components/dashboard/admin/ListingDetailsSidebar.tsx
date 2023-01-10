@@ -30,7 +30,7 @@ export default function ListingsDetailSideBar({
           <SqaureButton text="Back to Listings" onClick={() => {}} />
         </Link>
       </div>
-      <div className="flex flex-col gap-4 p-4 bg-gray-300 rounded">
+      <div className="flex flex-col gap-4 p-4 bg-gray-300 rounded overflow-hidden">
         <text className="text-xl font-bold">Details</text>
         <text>
           <span className="font-bold">Property:</span> {title}
