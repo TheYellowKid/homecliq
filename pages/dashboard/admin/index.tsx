@@ -2,8 +2,53 @@ import DashboardNavbar from "../../../components/navigation/DashboardNavbar";
 import CardsSection from "../../../components/dashboard/CardsSesction";
 import AdminDashboardSidebar from "../../../components/dashboard/admin/AdminDashboardSidebar";
 import AdminDashboardMobileNavbar from "../../../components/navigation/AdminDashboardMobileNavbar";
+import { collection, getDocs } from "firebase/firestore";
+import { fireStore } from "../../../firebase";
+import { useState, useEffect } from "react";
+
 
 export default function AdminDashboard() {
+
+  const [totalListings, setTotalListings] = useState(0);
+  const [totalApplications, setTotalApplications] = useState(0);
+  const [doneDeals, setDoneDeals] = useState(0);
+
+  const querySnapshot = getDocs(collection(fireStore, "properties"));
+    const getListings = async () => {
+      let counter = 0
+    await querySnapshot.then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          counter++
+      });
+      setTotalListings(counter)
+    });
+  };
+
+  const getApplications = () => {
+    let counter = 0;
+    getDocs(collection(fireStore, "applications")).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        counter++
+      })
+      setTotalApplications(counter)
+    })
+  }
+  const getDoneDeals = () => {
+    let counter = 0;
+    getDocs(collection(fireStore, "donedeals")).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        counter++
+      })
+      setDoneDeals(counter)
+    })
+  }
+
+  useEffect(() => {
+    getListings();
+    getApplications();
+    getDoneDeals();
+  }, []);
+
   return (
     <div className="font-quicksand">
       <DashboardNavbar />
@@ -19,7 +64,7 @@ export default function AdminDashboard() {
               <AdminDashboardMobileNavbar />
             </div>
           </div>
-          <CardsSection />
+          <CardsSection totalApplications={totalApplications} totalListings={totalListings} doneDeals={doneDeals}/>
         </div>
       </div>
     </div>

@@ -1,21 +1,28 @@
 import DashboardCard from "../cards/DashboardCard";
 
-export default function CardsSection() {
+
+
+interface CardProps {
+  totalListings: number;
+  totalApplications: number;
+  doneDeals: number;
+}
+export default function CardsSection({ totalListings, totalApplications, doneDeals }: CardProps) {
   const cards = [
     {
       title: "Total Listings",
-      count: 100,
+      count: totalListings,
       icon: "HomeIcon",
     },
     {
-      title: "Total Landlords",
-      count: 50,
+      title: "Applications",
+      count: totalApplications,
       icon: "PersonIcon",
     },
 
     {
       title: "Done Deals",
-      count: 450,
+      count: doneDeals,
       icon: "CheckCircledIcon",
     },
   ];

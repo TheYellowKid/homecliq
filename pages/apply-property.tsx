@@ -12,7 +12,7 @@ export default function ApplyProperty() {
     <div className="font-quicksand">
       <Navbar />
       <SmallBanner heading="Apply Property" />
-      <div className=" flex items-center justify-center p-32">
+      <div className=" flex items-center justify-center p-4 md:p-32">
         <TenandApplicationForm id={id as string} />
       </div>
       <Footer />

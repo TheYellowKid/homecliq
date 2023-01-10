@@ -11,7 +11,7 @@ export default function SmallBanner({ heading }: BannerProps) {
       style={{ height: 300 }}
     >
       <div className="flex flex-col items-center gap-8">
-        <text className="text-5xl font-bold text-white">{heading}</text>
+        <text className="text-2xl md:text-5xl font-bold text-white text-center">{heading}</text>
       </div>
     </div>
   );

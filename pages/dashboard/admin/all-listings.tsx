@@ -3,6 +3,7 @@ import AdminDashboardSidebar from "../../../components/dashboard/admin/AdminDash
 import AllListingsTable from "../../../components/dashboard/tables/AllListingsTable";
 import AdminDashboardMobileNavbar from "../../../components/navigation/AdminDashboardMobileNavbar";
 
+
 export default function AllListings() {
   return (
     <div className="font-quicksand">

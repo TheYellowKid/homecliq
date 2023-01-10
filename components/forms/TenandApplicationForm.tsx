@@ -37,10 +37,10 @@ export default function TenandApplicationForm({ id }: PropertyId) {
   };
 
   return (
-    <div className="w-1/2 p-8 bg-white rounded shadow-lg">
+    <div className="md:w-1/2 p-8 bg-white rounded shadow-lg">
       <text className="text-xl font-black">Enter Your Personal Details</text>
       <form className="flex flex-col gap-4" onSubmit={submitForm}>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-2">
           <Input
             required={true}
             placeholder="First Name"
