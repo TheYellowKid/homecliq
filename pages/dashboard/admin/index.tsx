@@ -64,7 +64,7 @@ export default function AdminDashboard() {
               <AdminDashboardMobileNavbar />
             </div>
           </div>
-          <CardsSection totalApplications={totalApplications} totalListings={totalListings} doneDeals={doneDeals}/>
+          <CardsSection totalApplications={totalApplications} totalListings={totalListings} doneDeals={doneDeals} isAdmin={true}/>
         </div>
       </div>
     </div>
