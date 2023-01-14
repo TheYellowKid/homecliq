@@ -44,8 +44,8 @@ export default function Navbar() {
             </DropdownMenu.Item>
             <DropdownMenu.Item>
               <RoundButton
-                text="Add Listing"
-                onClick={() => router.push("/dashboard")}
+                text="Track Application"
+                onClick={() => router.push("#")}
               />
             </DropdownMenu.Item>
             <DropdownMenu.Item>
@@ -74,8 +74,8 @@ export default function Navbar() {
         </div>
         <div className="flex items-center justify-center gap-4">
           <RoundButton
-            text="Add Listing"
-            onClick={() => router.push("/dashboard")}
+            text="Track Application"
+            onClick={() => router.push("#")}
           />
           <RoundButton
             text="My Account"
