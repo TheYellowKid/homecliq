@@ -52,13 +52,13 @@ export default function ListingsTab() {
   };
 
   return (
-    <div className="flex flex-col py-32 px-96">
+    <div className="flex flex-col p-4 md:py-32 md:px-96">
       <div className="flex items-center justify-between">
         <div>
           <PageFilter placeholder="Most Recent" options={[]} />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-4">
+      <div className="flex flex-col md:grid md:grid-cols-3 gap-4 mt-4">
         {listings.length > 0 ? (
           listings.map((property, i) => (
             <PropertyCard
