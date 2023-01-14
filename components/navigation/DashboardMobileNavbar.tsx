@@ -77,10 +77,12 @@ export default function DashboardMobileNavbar() {
           </Link>
         </DropdownMenu.Item>
         <DropdownMenu.Item onSelect={signOut}>
-          <div className="flex items-center gap-4">
-            <ExitIcon />
-            <text className="text-base">Logout</text>
-          </div>
+          <Link href="#">
+            <div className="flex items-center gap-4">
+              <ExitIcon />
+              <text className="text-base">Logout</text>
+            </div>
+          </Link>
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
