@@ -5,16 +5,23 @@ import DashboardCard from "../cards/DashboardCard";
 
 interface CardProps {
   totalListings: number;
+  pendingListings: number;
   totalApplications: number;
   doneDeals: number;
 }
-export default function CardsSection({ totalListings, totalApplications, doneDeals }: CardProps) {
+export default function CardsSection({ totalListings,pendingListings, totalApplications, doneDeals }: CardProps) {
   const cards = [
     {
       title: "Total Listings",
       count: totalListings,
       icon: "HomeIcon",
       link: "/dashboard/admin/all-listings"
+    },
+    {
+      title: "Pending Listings",
+      count: pendingListings,
+      icon: "HomeIcon",
+      link: "/dashboard/admin/pending-listings"
     },
     {
       title: "Applications",

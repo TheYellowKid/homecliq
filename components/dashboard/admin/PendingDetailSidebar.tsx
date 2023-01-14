@@ -1,6 +1,11 @@
 import DeleteButton from "../../buttons/DeleteButton";
 import SqaureButton from "../../buttons/SquareButton";
 import Link from "next/link";
+import { doc, updateDoc } from "firebase/firestore";
+import { fireStore } from "../../../firebase";
+import AlertDialog from "../../alertDialogs/Alertdialog";
+import { useState } from "react";
+
 
 interface SidebarProps {
   title: string;
@@ -22,6 +27,21 @@ export default function PendingDetailSideBar({
   agentemail,
   agentphone,
 }: SidebarProps) {
+
+
+  const [dialogHeading, setDialogHeading] = useState("")
+  const [dialogDescription, setDialogDescription] = useState("")
+  const [dialogState, setDialogState] = useState(false)
+  const [btnText,setBtnTxt] = useState("OK")
+
+  const approveProperty = async () => {
+    const propertyRef = doc(fireStore, "properties", id);
+    await updateDoc(propertyRef, {
+      isApproved: true,
+    }).then(() => {
+      alert("done")
+    });
+  }
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-end">
@@ -53,7 +73,7 @@ export default function PendingDetailSideBar({
           <span className="font-bold">Email:</span> {agentemail}
         </text>
         <div className="flex items-center justify-between">
-          <SqaureButton text="Approve" onClick={() => {}} />
+          <SqaureButton text="Approve" onClick={approveProperty} />
           <DeleteButton text="Delete" />
         </div>
       </div>

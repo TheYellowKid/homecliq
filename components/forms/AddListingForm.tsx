@@ -30,43 +30,6 @@ export default function AddListingForm() {
   const [owneremail, setOwnerEmail] = useState("");
 
 
-  const uploadImage = async (file: File) => {
-    const storedImages = [];
-    if (!file) {
-      alert("Please select an images");
-    }
-    console.log(file);
-    const storageRef = ref(storage, `images/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-        setUploadProgress(progress);
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-        }
-      },
-      (error) => {
-        alert(error.message);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("File available at", downloadURL);
-          storedImages.push(downloadURL);
-        });
-      }
-    );
-  };
-
   function uploadImages(theimages: FileList) {
     setIsUploading(true);
     setTotalImages(theimages.length);
@@ -105,7 +68,18 @@ export default function AddListingForm() {
     });
   }
 
+
+
   useEffect(() => {
+      if (typeof window !== 'undefined') {
+      // code that accesses localStorage goes here
+      setOwnerPhone(localStorage.getItem("phonenumber") as string);
+      setOwnerName(localStorage.getItem("firstname") as string);
+      setOwnerSurname(localStorage.getItem("lastname") as string);
+      setOwnerEmail(localStorage.getItem("email") as string);
+       
+      }
+
     if (imagesURLs.length === totalImages) {
       setIsUploading(false);
     }
@@ -122,14 +96,6 @@ export default function AddListingForm() {
   };
 
   const handleSubmit = () => {
-    if (typeof window !== 'undefined') {
-      // code that accesses localStorage goes here
-      setOwnerPhone(localStorage.getItem("phonenumber") as string);
-      setOwnerName(localStorage.getItem("firstname") as string);
-      setOwnerSurname(localStorage.getItem("lastname") as string);
-      setOwnerEmail(localStorage.getItem("email") as string);
-       
-      }
     try {
       const property = addDoc(collection(fireStore, "properties"), {
         title: title,
@@ -142,13 +108,10 @@ export default function AddListingForm() {
         ownerphone: ownerphone,
         owneremail: owneremail,
         ownername: ownername,
-        ownersurname: ownername,
+        ownersurname: ownersurname,
         images: imagesURLs,
       });
-      alert(
-        "Your Listing has been submitted and will be available on the platform once it has been approved"
-      );
-      router.push("/dashboard/agent/my-listings");
+      router.push("/dashboard/agent/listing-submission-success");
     } catch (error) {
       //alert("Error adding document: ", error.message);
       console.log(error);

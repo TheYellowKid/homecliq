@@ -71,7 +71,7 @@ export default function AdminDashboardSidebar() {
         <a onClick={signOut}>
           <div className="flex items-center gap-4">
             <ExitIcon />
-            <a onClick={signOut}>
+            <a href="#" onClick={signOut}>
               <text className="text-base">Logout</text>
             </a>
           </div>

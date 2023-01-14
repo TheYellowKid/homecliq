@@ -10,17 +10,24 @@ import { useState, useEffect } from "react";
 export default function AdminDashboard() {
 
   const [totalListings, setTotalListings] = useState(0);
+  const [pendingListings, setPendingListings] = useState(0);
   const [totalApplications, setTotalApplications] = useState(0);
   const [doneDeals, setDoneDeals] = useState(0);
 
   const querySnapshot = getDocs(collection(fireStore, "properties"));
     const getListings = async () => {
       let counter = 0
+      let pendingCounter = 0
     await querySnapshot.then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-          counter++
+          if(doc.data().isApproved === true){
+            counter++
+          }else{
+            pendingCounter++
+          }
       });
       setTotalListings(counter)
+      setPendingListings(pendingCounter)
     });
   };
 
@@ -64,7 +71,7 @@ export default function AdminDashboard() {
               <AdminDashboardMobileNavbar />
             </div>
           </div>
-          <CardsSection totalApplications={totalApplications} totalListings={totalListings} doneDeals={doneDeals} />
+          <CardsSection totalApplications={totalApplications} totalListings={totalListings} doneDeals={doneDeals} pendingListings={pendingListings}/>
         </div>
       </div>
     </div>

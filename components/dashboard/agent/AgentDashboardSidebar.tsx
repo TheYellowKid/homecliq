@@ -63,7 +63,7 @@ export default function AgentDashboardSidebar() {
             <text className="text-base">Applications</text>
           </div>
         </Link>
-        <a onClick={signOut}>
+        <a href="#" onClick={signOut}>
           <div className="flex items-center gap-4">
             <ExitIcon />
             <text className="text-base">Logout</text>
