@@ -19,7 +19,7 @@ export default function Applications() {
               <AdminDashboardMobileNavbar />
             </div>
           </div>
-        {/* <ApplicationsTable  /> */}
+           <ApplicationsTable  />
         </div>
       </div>
     </div>

@@ -9,9 +9,10 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 interface PropertyId {
   id: string;
+  owneremail: string;
 }
 
-export default function TenandApplicationForm({ id }: PropertyId) {
+export default function TenandApplicationForm({ id, owneremail }: PropertyId) {
   const router = useRouter();
 
   const [firstname, setFirstname] = useState("");
@@ -28,6 +29,8 @@ export default function TenandApplicationForm({ id }: PropertyId) {
         applicantemail: email,
         applicantphone: phonenumber as string,
         propertyid: id,
+        owneremail: owneremail,
+        applicationstatus: "pending",
       });
       router.push("/application-success");
     } catch (error) {

@@ -7,13 +7,13 @@ import { useState } from "react";
 
 export default function ApplyProperty() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id, owneremail } = router.query;
   return (
     <div className="font-quicksand">
       <Navbar />
       <SmallBanner heading="Apply Property" />
       <div className=" flex items-center justify-center p-4 md:p-32">
-        <TenandApplicationForm id={id as string} />
+        <TenandApplicationForm id={id as string} owneremail={owneremail as string}/>
       </div>
       <Footer />
     </div>

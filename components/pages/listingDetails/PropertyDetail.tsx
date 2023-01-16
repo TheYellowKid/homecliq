@@ -52,6 +52,7 @@ export default function PropertyDetail() {
           rent={property ? property.rent : 0}
           location={property ? property.location : ""}
           towncity={property ? property.towncity : ""}
+          owneremail={property ? property.owneremail : ""}
           id={id as string}
         />
       </div>

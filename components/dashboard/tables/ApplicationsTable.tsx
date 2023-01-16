@@ -12,15 +12,10 @@ interface ApplicationObject {
   applicantname: string;
   applicantphone: string;
   applicantsurname: string;
+  applicationstatus: string;
   propertyid: string;
 }
-export default function ApplicationsTable({
-  applicantemail,
-  applicantname,
-  applicantphone,
-  applicantsurname,
-  propertyid,
-}: ApplicationObject) {
+export default function ApplicationsTable() {
   const router = useRouter();
   const [applications, setApplications] = useState<ApplicationObject[]>([]);
   const querySnapshot = getDocs(collection(fireStore, "applications"));
@@ -63,7 +58,7 @@ export default function ApplicationsTable({
               </Table.Cell>
               <Table.Cell>{application.applicantphone}</Table.Cell>
               <Table.Cell>
-                <StyledBadge type="active">cosed</StyledBadge>
+                <StyledBadge type={application.applicationstatus === "pending"? "pending" : application.applicationstatus === "open"? "open" : "closed" }>{application.applicationstatus}</StyledBadge>
               </Table.Cell>
               <Table.Cell>
                 <IconButton

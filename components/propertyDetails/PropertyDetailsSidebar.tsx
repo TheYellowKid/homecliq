@@ -6,6 +6,7 @@ interface SidebarProps {
   rent: number;
   location: string;
   towncity: string;
+  owneremail:string;
   id: string;
 }
 
@@ -14,6 +15,7 @@ export default function PropertyDetailSideBar({
   rent,
   location,
   towncity,
+  owneremail,
   id,
 }: SidebarProps) {
   const router = useRouter();
@@ -29,7 +31,7 @@ export default function PropertyDetailSideBar({
       <SqaureButton
         text="Apply Now"
         onClick={() =>
-          router.push({ pathname: "/apply-property", query: { id: id } })
+          router.push({ pathname: "/apply-property", query: { id: id, owneremail:owneremail } })
         }
       />
     </div>
