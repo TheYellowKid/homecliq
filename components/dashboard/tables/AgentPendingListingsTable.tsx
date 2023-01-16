@@ -82,7 +82,10 @@ export default function AgentPendingListngsTable() {
            <Table.Cell>${listing.rent} month</Table.Cell>
            <Table.Cell>
              <IconButton
-               onClick={() => router.push("/dashboard/admin/listing-details")}
+               onClick={() => router.push({
+                  pathname: "/dashboard/agent/pending-details",
+                  query: { id: propertyIds[index] },
+               })}
              >
                <EyeOpenIcon />
              </IconButton>

@@ -114,7 +114,7 @@ export default function AddListingForm() {
       router.push("/dashboard/agent/listing-submission-success");
     } catch (error) {
       //alert("Error adding document: ", error.message);
-      console.log(error);
+      router.push("/dashboard/agent/listing-submission-failed");
     }
   };
 

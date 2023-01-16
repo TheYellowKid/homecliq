@@ -85,7 +85,10 @@ export default function AgentListingsTable() {
            <Table.Cell>${listing.rent} month</Table.Cell>
            <Table.Cell>
              <IconButton
-               onClick={() => router.push("/dashboard/admin/listing-details")}
+               onClick={() =>  router.push({
+                      pathname: "/dashboard/agent/listing-details",
+                      query: { id: propertyIds[index] },
+                    })}
              >
                <EyeOpenIcon />
              </IconButton>
