@@ -5,6 +5,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { fireStore } from "../../../firebase";
 import AlertDialog from "../../alertDialogs/Alertdialog";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 
 interface SidebarProps {
@@ -29,6 +30,7 @@ export default function PendingDetailSideBar({
 }: SidebarProps) {
 
 
+  const router = useRouter()
   const [dialogHeading, setDialogHeading] = useState("")
   const [dialogDescription, setDialogDescription] = useState("")
   const [dialogState, setDialogState] = useState(false)
@@ -39,7 +41,7 @@ export default function PendingDetailSideBar({
     await updateDoc(propertyRef, {
       isApproved: true,
     }).then(() => {
-      alert("done")
+      router.push("/dashboard/admin/property-approved")
     });
   }
   return (
