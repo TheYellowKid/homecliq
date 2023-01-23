@@ -43,6 +43,14 @@ export default function Navbar() {
               </Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item>
+              <Link
+                href="/add-listing"
+                className="block mt-4 font-bold mr-4 text-blue-900 lg:inline-block lg:mt-0 hover:text-black"
+              >
+            Add Listing
+          </Link>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
               <RoundButton
                 text="Track Application"
                 onClick={() => router.push("#")}
@@ -73,6 +81,12 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="flex items-center justify-center gap-4">
+           <Link
+            href="/add-listing"
+            className="block mt-4 font-bold mr-4 text-blue-900 lg:inline-block lg:mt-0 hover:text-black"
+          >
+            Add Listing
+          </Link>
           <RoundButton
             text="Track Application"
             onClick={() => router.push("#")}
