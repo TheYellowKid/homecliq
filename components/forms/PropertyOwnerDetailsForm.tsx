@@ -43,13 +43,13 @@ export default function PropertyOwnerDetailsForm() {
   };
 
   return (
-    <div className="flex flex-col w-10/12 md:w-1/2 p-8 bg-white rounded shadow-lg">
+    <div className="flex flex-col w-10/12 md:w-1/2 md:my-32 p-8 bg-white rounded shadow-lg gap-8">
       <text className="text-xl font-black">Please Provide Your Personal Details</text>
       <text className="text-sm text-gray-500">
         Your please provide your personal details so that we can easily contact you when.
       </text>
       <form
-        className="flex-col md:grid md:grid-cols-2"
+        className="flex-col md:grid md:grid-cols-2 gap-4"
         onSubmit={(e) => {
           e.preventDefault();
           signUpUser();
