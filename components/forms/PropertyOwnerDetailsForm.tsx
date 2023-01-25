@@ -45,6 +45,7 @@ export default function PropertyOwnerDetailsForm({id}: FormProps) {
             localStorage.setItem("phonenumber", doc.data().phonenumber);
             localStorage.setItem("uid", doc.data().uid);
             router.push("/dashboard/admin");
+            return;
         }else{
             localStorage.setItem("role", doc.data().role);
             localStorage.setItem("firstname", doc.data().firstname);
@@ -53,8 +54,19 @@ export default function PropertyOwnerDetailsForm({id}: FormProps) {
             localStorage.setItem("phonenumber", doc.data().phonenumber);
             localStorage.setItem("uid", doc.data().uid);
             router.push("/dashboard/agent");
+            return;
         }
-      }});
+      }
+      router.push({
+        pathname: "/create-password",
+        query: { 
+          firstname: firstname,
+          lastname: lastname,
+          phonenumber: phonenumber,
+          email: email,
+        },
+      })
+    });
     });
   }
 
