@@ -53,7 +53,7 @@ export default function Navbar() {
             <DropdownMenu.Item>
               <RoundButton
                 text="Track Application"
-                onClick={() => router.push("#")}
+                onClick={() => router.push("/track-application")}
               />
             </DropdownMenu.Item>
             <DropdownMenu.Item>
@@ -89,7 +89,7 @@ export default function Navbar() {
           </Link>
           <RoundButton
             text="Track Application"
-            onClick={() => router.push("#")}
+            onClick={() => router.push("/track-application")}
           />
           <RoundButton
             text="My Account"
