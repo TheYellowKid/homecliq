@@ -82,9 +82,9 @@ export default function AddListingForm2() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
-      const property = addDoc(collection(fireStore, "properties"), {
+      const property = await addDoc(collection(fireStore, "properties"), {
         title: title,
         description: description,
         location: location,
@@ -94,7 +94,7 @@ export default function AddListingForm2() {
         isApproved: false,
         images: imagesURLs,
       });
-      router.push("/dashboard/agent/listing-submission-success");
+      router.push({pathname:"/landlord-details", query:{id:property.id}})
     } catch (error) {
       //alert("Error adding document: ", error.message);
       router.push("/dashboard/agent/listing-submission-failed");
@@ -296,7 +296,7 @@ export default function AddListingForm2() {
         </div>
         <SqaureButton
           text="Next"
-          onClick={() => router.push("/landlord-details")}
+          onClick={() => {handleSubmit}}
         />
       </form>
     </div>

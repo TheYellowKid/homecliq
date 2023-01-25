@@ -4,43 +4,59 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Link from "next/link";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, fireStore } from "../../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import {fireStore } from "../../firebase";
+import { doc, updateDoc, collection, getDocs } from "firebase/firestore";
 
-export default function PropertyOwnerDetailsForm() {
+
+interface FormProps {
+  id: string;
+}
+
+export default function PropertyOwnerDetailsForm({id}: FormProps) {
   const router = useRouter();
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const signUpUser = async () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        addUser(user.uid);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-  };
-
-  const addUser = async (uid: string) => {
-    const docRef = await addDoc(collection(fireStore, "users"), {
-      firstname: firstname,
-      lastname: lastname,
-      phonenumber: phonenumber,
-      email: email,
-      password: password,
-      role: "agent",
-      uid: uid,
+  const submitForm = async () => {
+    const propertyRef = doc(fireStore, "properties", id);
+    await updateDoc(propertyRef, {
+      ownerphone: phonenumber,
+      owneremail: email,
+      ownername: firstname,
+      ownersurname: lastname,
+    }).then(() => {
+      checkAccountExists();
     });
-    router.push("/dashboard/agent");
-  };
+  }
+
+  const checkAccountExists = async () => {
+    await getDocs(collection(fireStore, "users")).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().email === email) {
+          if(doc.data().role === "agent"){
+            localStorage.setItem("role", doc.data().role);
+            localStorage.setItem("firstname", doc.data().firstname);
+            localStorage.setItem("lastname", doc.data().lastname);
+            localStorage.setItem("email", doc.data().email);
+            localStorage.setItem("phonenumber", doc.data().phonenumber);
+            localStorage.setItem("uid", doc.data().uid);
+            router.push("/dashboard/landlords");
+        }else{
+            localStorage.setItem("role", doc.data().role);
+            localStorage.setItem("firstname", doc.data().firstname);
+            localStorage.setItem("lastname", doc.data().lastname);
+            localStorage.setItem("email", doc.data().email);
+            localStorage.setItem("phonenumber", doc.data().phonenumber);
+            localStorage.setItem("uid", doc.data().uid);
+            router.push("/dashboard/landlords");
+        }
+      }});
+    });
+  }
+
 
   return (
     <div className="flex flex-col w-10/12 md:w-1/2 md:my-32 p-8 bg-white rounded shadow-lg gap-8">
@@ -52,7 +68,7 @@ export default function PropertyOwnerDetailsForm() {
         className="flex-col md:grid md:grid-cols-2 gap-4"
         onSubmit={(e) => {
           e.preventDefault();
-          signUpUser();
+          submitForm();
         }}
       >
         <Input
