@@ -35,15 +35,16 @@ export default function PropertyOwnerDetailsForm({id}: FormProps) {
   const checkAccountExists = async () => {
     await getDocs(collection(fireStore, "users")).then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
+            console.log(doc.data().email)
         if (doc.data().email === email) {
-          if(doc.data().role === "agent"){
+          if(doc.data().role === "admin"){
             localStorage.setItem("role", doc.data().role);
             localStorage.setItem("firstname", doc.data().firstname);
             localStorage.setItem("lastname", doc.data().lastname);
             localStorage.setItem("email", doc.data().email);
             localStorage.setItem("phonenumber", doc.data().phonenumber);
             localStorage.setItem("uid", doc.data().uid);
-            router.push("/dashboard/landlords");
+            router.push("/dashboard/admin");
         }else{
             localStorage.setItem("role", doc.data().role);
             localStorage.setItem("firstname", doc.data().firstname);
@@ -51,7 +52,7 @@ export default function PropertyOwnerDetailsForm({id}: FormProps) {
             localStorage.setItem("email", doc.data().email);
             localStorage.setItem("phonenumber", doc.data().phonenumber);
             localStorage.setItem("uid", doc.data().uid);
-            router.push("/dashboard/landlords");
+            router.push("/dashboard/agent");
         }
       }});
     });
