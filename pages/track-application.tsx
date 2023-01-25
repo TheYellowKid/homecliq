@@ -1,10 +1,12 @@
-import Navbar from "../components/navigation/navbar"
+import TrackApplicationForm from "../components/forms/TrackApplicationForm"
 
 
 export default function TrackApplication(){
     return(
         <div>
-            <Navbar />
+            <div className="flex flex-col items-center justify-center w-screen h-screen font-quicksand">
+                <TrackApplicationForm />
+            </div>
         </div>
     )
 }
