@@ -7,6 +7,7 @@ interface PropertyCardProps {
   rent: number;
   image: string;
   id: string;
+  towncity: string;
 }
 export default function PropertyCard({
   title,
@@ -14,6 +15,7 @@ export default function PropertyCard({
   rent,
   image,
   id,
+  towncity,
 }: PropertyCardProps) {
   
   return (
@@ -43,7 +45,7 @@ export default function PropertyCard({
           >
             <h3 className="text-xl font-bold">{title}</h3>
           </Link>
-          <h3 className="text-base font-normal">{location}</h3>
+          <h3 className="text-base font-normal">{towncity}, {location}</h3>
           <h3 className="text-base font-semibold">${rent}/month</h3>
         </div>
         <hr className="my-4" />

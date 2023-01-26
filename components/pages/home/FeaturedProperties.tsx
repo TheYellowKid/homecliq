@@ -61,6 +61,7 @@ export default function FeaturedProperties() {
                 image={property.images[0]}
                 rent={property.rent}
                 location={property.location}
+                towncity={property.towncity}
                 id={propertyIds[i]}
               />
             ))

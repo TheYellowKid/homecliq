@@ -1,6 +1,6 @@
 import PageFilter from "../../filters/PageFilter";
 import PropertyCard from "../../cards/PropertyCard";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { fireStore } from "../../../firebase";
 import { useState, useEffect } from "react";
 
@@ -19,19 +19,29 @@ interface PropertyObject {
   towncity: string;
 }
 
-export default function ListingsTab() {
+interface SearchResultsFilters {
+  type: string;
+  location: string;
+}
+
+export default function SearchResultsTab({type, location}: SearchResultsFilters) {
   const [listings, setListings] = useState<PropertyObject[]>([]);
   const [propertyIds, setPropertyIds] = useState<string[]>([]);
 
-  const querySnapshot = getDocs(collection(fireStore, "properties"));
+  
   const getListings = async () => {
     const data: PropertyObject[] = [];
     const ids: string[] = [];
-    await querySnapshot.then((querySnapshot) => {
+    await getDocs(query(collection(fireStore, "properties"), where("title",">=", type))).then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (doc.data().isApproved === true) {
-              data.push(doc.data() as PropertyObject);
-              ids.push(doc.id);
+                console.log("tapinda")
+                console.log("location =>", location, "data.location =>",doc.data().towncity)
+              if(doc.data().towncity === location){
+                console.log("takaenda")
+                data.push(doc.data() as PropertyObject);
+                ids.push(doc.id);
+              }
         }
       });
     });
@@ -72,7 +82,7 @@ export default function ListingsTab() {
           ))
         ) : (
           <div className="items-center justify-center flex">
-            <text>no properties found</text>
+            <text>Properties that mathces search not found </text>
           </div>
         )}
       </div>
