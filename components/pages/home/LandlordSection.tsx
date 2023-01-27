@@ -29,7 +29,7 @@ export default function LandlordSection() {
           <YellowButton
             text="List Property Now"
             onClick={() => {
-              router.push("/dashboard");
+              router.push("/add-listing");
             }}
           />
         </div>
