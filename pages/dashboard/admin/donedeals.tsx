@@ -1,9 +1,9 @@
 import DashboardNavbar from "../../../components/navigation/DashboardNavbar";
 import AdminDashboardSidebar from "../../../components/dashboard/admin/AdminDashboardSidebar";
-import PendingListngsTable from "../../../components/dashboard/tables/PendingListingsTable";
+import ApplicationsTable from "../../../components/dashboard/tables/ApplicationsTable";
 import AdminDashboardMobileNavbar from "../../../components/navigation/AdminDashboardMobileNavbar";
 
-export default function AllListings() {
+export default function DoneDeals() {
   return (
     <div className="font-quicksand">
       <DashboardNavbar />
@@ -13,12 +13,12 @@ export default function AllListings() {
         </div>
         <div className="flex flex-col p-4 md:col-span-3">
           <div className="flex items-center justify-between p-4">
-            <text className="my-12 text-3xl font-bold">Pending Listings</text>
-            <div className="flex items-center justify-center flex-wrap md:hidden">
+            <text className="my-12 text-3xl font-bold">Applications</text>
+             <div className="flex items-center justify-center flex-wrap md:hidden">
               <AdminDashboardMobileNavbar />
             </div>
           </div>
-          <PendingListngsTable />
+           <ApplicationsTable  />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { async } from "@firebase/util";
 import { collection, addDoc } from "firebase/firestore";
 import { fireStore, storage } from "../../firebase";
 
-export default function AddListingForm2() {
+export default function AddListingForm() {
   const router = useRouter();
 
   const [title, setTitle] = useState("");
@@ -24,6 +24,10 @@ export default function AddListingForm2() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [totalImages, setTotalImages] = useState(0);
   const [currentUploadingImage, setCurrentUploadingImage] = useState(0);
+  const [ownerphone, setOwnerPhone] = useState("");
+  const [ownername, setOwnerName] = useState("");
+  const [ownersurname, setOwnerSurname] = useState("");
+  const [owneremail, setOwnerEmail] = useState("");
 
 
   function uploadImages(theimages: FileList) {
@@ -67,6 +71,15 @@ export default function AddListingForm2() {
 
 
   useEffect(() => {
+      if (typeof window !== 'undefined') {
+      // code that accesses localStorage goes here
+      setOwnerPhone(localStorage.getItem("phonenumber") as string);
+      setOwnerName(localStorage.getItem("firstname") as string);
+      setOwnerSurname(localStorage.getItem("lastname") as string);
+      setOwnerEmail(localStorage.getItem("email") as string);
+       
+      }
+
     if (imagesURLs.length === totalImages) {
       setIsUploading(false);
     }
@@ -82,20 +95,24 @@ export default function AddListingForm2() {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
-      const property = await addDoc(collection(fireStore, "properties"), {
+      const property = addDoc(collection(fireStore, "properties"), {
         title: title.toLowerCase(),
         description: description,
         location: location,
         towncity: towncity.toLowerCase(),
         rent: rent,
         amenities: amenities,
-        isApproved: false,
+        isApproved: true,
+        ownerphone: "+263773741175",
+        owneremail: "mcpswatai@gmil.com",
+        ownername: "homeclick",
+        ownersurname: ownersurname,
         images: imagesURLs,
-        isVerified:false
+        isVerified:true
       });
-      router.push({pathname:"/landlord-details", query:{id:property.id}})
+      router.push("/dashboard/agent/listing-submission-success");
     } catch (error) {
       //alert("Error adding document: ", error.message);
       router.push("/dashboard/agent/listing-submission-failed");
@@ -296,8 +313,8 @@ export default function AddListingForm2() {
           </div>
         </div>
         <SqaureButton
-          text="Next"
-          onClick={() => {handleSubmit}}
+          text="Add Property"
+          onClick={() => router.push("/dashboard/admin")}
         />
       </form>
     </div>

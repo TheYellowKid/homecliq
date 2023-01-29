@@ -10,7 +10,6 @@ export default function AgentDashboard() {
     <div className="font-quicksand">
       <DashboardNavbar />
       <div className="flex-col md:grid md:grid-cols-5">
-        <div className="hidden md:flex flex-col md:px-12"></div>
         <div className="hidden md:flex flex-col md:px-12">
           <AgentDashboardSidebar />
         </div>

@@ -1,11 +1,12 @@
 import DeleteButton from "../../buttons/DeleteButton";
 import SqaureButton from "../../buttons/SquareButton";
 import Link from "next/link";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc ,deleteDoc} from "firebase/firestore";
 import { fireStore } from "../../../firebase";
 import AlertDialog from "../../alertDialogs/Alertdialog";
 import { useState } from "react";
 import { useRouter } from "next/router";
+
 
 
 interface SidebarProps {
@@ -31,10 +32,20 @@ export default function PendingDetailSideBar({
 
 
   const router = useRouter()
-  const [dialogHeading, setDialogHeading] = useState("")
-  const [dialogDescription, setDialogDescription] = useState("")
-  const [dialogState, setDialogState] = useState(false)
-  const [btnText,setBtnTxt] = useState("OK")
+
+  const deleteListing = async (id: string) => {
+    console.log("working");
+    if (confirm("Delete this listing?") === true) {
+      await deleteDoc(doc(fireStore, "properties", id))
+        .then(() => {
+          alert("Listing Deleted");
+          router.push("/dashboard/admin/pending-listings");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  };
 
   const approveProperty = async () => {
     const propertyRef = doc(fireStore, "properties", id);
@@ -76,7 +87,7 @@ export default function PendingDetailSideBar({
         </text>
         <div className="flex items-center justify-between">
           <SqaureButton text="Approve" onClick={approveProperty} />
-          <DeleteButton text="Delete" />
+          <DeleteButton text="Delete" onClick={() => deleteListing(id)}/>
         </div>
       </div>
     </div>

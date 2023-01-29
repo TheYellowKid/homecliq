@@ -1,6 +1,9 @@
 import DeleteButton from "../../buttons/DeleteButton";
 import SqaureButton from "../../buttons/SquareButton";
 import Link from "next/link";
+import { deleteDoc, doc } from "@firebase/firestore";
+import { fireStore } from "../../../firebase";
+import { useRouter } from "next/router";
 
 interface SidebarProps {
   title: string;
@@ -23,11 +26,28 @@ export default function ListingsDetailSideBar({
   agentemail,
   agentphone,
 }: SidebarProps) {
+
+  const router = useRouter();
+
+  const deleteApplication = async (id: string) => {
+    console.log("working");
+    if (confirm("Delete this listing?") === true) {
+      await deleteDoc(doc(fireStore, "properties", id))
+        .then(() => {
+          alert("Listing Deleted");
+          router.push("/dashboard/admin/all-listings");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-end">
         <Link href="/dashboard/admin/all-listings">
-          <SqaureButton text="Back to Listings" onClick={() => {}} />
+          <SqaureButton text="Back to Listings" onClick={() =>{}} />
         </Link>
       </div>
       <div className="flex flex-col gap-4 p-4 bg-gray-300 rounded overflow-hidden">
@@ -53,7 +73,7 @@ export default function ListingsDetailSideBar({
         <text>
           <span className="font-bold">Email:</span> {agentemail}
         </text>
-        <DeleteButton text="Delete" />
+        <DeleteButton text="Delete"  onClick = {() => { deleteApplication(id)}}/>
       </div>
     </div>
   );

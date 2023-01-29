@@ -98,10 +98,10 @@ export default function AddListingForm() {
   const handleSubmit = () => {
     try {
       const property = addDoc(collection(fireStore, "properties"), {
-        title: title,
+        title: title.toLowerCase(),
         description: description,
         location: location,
-        towncity: towncity,
+        towncity: towncity.toLowerCase(),
         rent: rent,
         amenities: amenities,
         isApproved: false,
@@ -110,6 +110,7 @@ export default function AddListingForm() {
         ownername: ownername,
         ownersurname: ownersurname,
         images: imagesURLs,
+        isVerified:false
       });
       router.push("/dashboard/agent/listing-submission-success");
     } catch (error) {

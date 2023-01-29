@@ -59,8 +59,7 @@ export default function AdminDashboard() {
   return (
     <div className="font-quicksand">
       <DashboardNavbar />
-      <div className="flex flex-col md:grid md:grid-cols-5">
-        <div className="hidden md:flex flex-col md:px-12"></div>
+      <div className="flex flex-col md:grid md:grid-cols-5 px-32">
         <div className="hidden md:flex flex-col md:px-12">
           <AdminDashboardSidebar />
         </div>

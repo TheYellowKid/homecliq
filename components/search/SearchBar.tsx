@@ -14,8 +14,8 @@ export default function SearchBar() {
     router.push({
       pathname: "/search",
       query: {
-        type: searchbyType,
-        location: searchbyLocation,
+        type: searchbyType.toLowerCase(),
+        location: searchbyLocation.toLowerCase(),
       },
     });
   }
@@ -29,8 +29,8 @@ export default function SearchBar() {
         handleSearch();
       }}
     >
-      <Input placeholder="Propety Type" onChange={e => setSearchbyType(e.target.value)} required={true} type="text"/>
-      <Input placeholder="Location" onChange={ e => setSearchbyLocation(e.target.value)} required={true} type="text"/>
+      <Input placeholder="Type (eg. one room)" onChange={e => setSearchbyType(e.target.value)} required={true} type="text"/>
+      <Input placeholder="Town/City (eg Gweru)" onChange={ e => setSearchbyLocation(e.target.value)} required={true} type="text"/>
       <SqaureButton text="Search" onClick={() => {}} />
     </form>
   );

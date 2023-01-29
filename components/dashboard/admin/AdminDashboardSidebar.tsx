@@ -6,6 +6,7 @@ import {
   EnvelopeOpenIcon,
   EnvelopeClosedIcon,
   HomeIcon,
+  PlusIcon
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { auth } from "../../../firebase";
@@ -42,6 +43,12 @@ export default function AdminDashboardSidebar() {
           <div className="flex items-center gap-4">
             <HomeIcon />
             <text className="text-base">All Listings</text>
+          </div>
+        </Link>
+        <Link href="/dashboard/agent/add-listing">
+          <div className="flex items-center gap-4">
+            <PlusIcon />
+            <text className="text-base">Add Listings</text>
           </div>
         </Link>
         <Link href="/dashboard/admin/pending-listings">

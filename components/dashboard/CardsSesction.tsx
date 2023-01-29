@@ -34,7 +34,7 @@ export default function CardsSection({ totalListings,pendingListings, totalAppli
       title: "Done Deals",
       count: doneDeals,
       icon: "CheckCircledIcon",
-      link:  "dashboard/admin/donedeals"
+      link:  "/dashboard/admin/donedeals"
     },
   ];
   return (
