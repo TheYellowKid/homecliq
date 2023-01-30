@@ -44,7 +44,7 @@ export default function ListingsDetailSideBar({
         <text>
           <span className="font-bold">Date Listed:</span> 3 Jan 2022
         </text>
-        <DeleteButton text="Delete" />
+        <DeleteButton text="Delete" onClick={()=>{}}/>
       </div>
     </div>
   );

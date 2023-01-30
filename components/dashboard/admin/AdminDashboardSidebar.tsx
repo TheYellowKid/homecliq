@@ -45,7 +45,7 @@ export default function AdminDashboardSidebar() {
             <text className="text-base">All Listings</text>
           </div>
         </Link>
-        <Link href="/dashboard/agent/add-listing">
+        <Link href="/dashboard/admin/add-listing">
           <div className="flex items-center gap-4">
             <PlusIcon />
             <text className="text-base">Add Listings</text>
