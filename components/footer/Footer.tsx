@@ -19,7 +19,7 @@ export default function Footer() {
       <hr />
       <div className="flex items-center justify-between m-8">
         <text className="text-white">
-          Copyright © 2022. All rights reserved to Homecliq
+          Copyright © 2023. All rights reserved to Homecliq
         </text>
         <text className="text-gray-400">Terms & Conditions</text>
       </div>
