@@ -44,7 +44,7 @@ export default function PropertyDetail() {
   return (
     <div className="flex flex-col md:grid md:grid-cols-4 md:py-32 p-4 md:px-96 gap-4">
       <div className="flex flex-col col-span-3">
-        <PropetyGallery images={property ? property.images : [""]} />
+        <PropetyGallery images={property?  property.images.length > 0 ? property.images : ["/assets/home.jpg"] : ["/assets/home.jpg"]}  />
       </div>
       <div>
         <PropertyDetailSideBar

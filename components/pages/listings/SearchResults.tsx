@@ -73,7 +73,7 @@ export default function SearchResultsTab({type, location}: SearchResultsFilters)
           listings.map((property, i) => (
             <PropertyCard
               title={property.title}
-              image={property.images[0]}
+              image={property.images.length > 0? property.images[0]:"/assets/home.jpg"}
               rent={property.rent}
               location={property.location}
               towncity={property.towncity}
