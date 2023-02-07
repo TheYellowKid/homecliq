@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <div className="flex flex-col w-screen bg-blue-900">
@@ -13,7 +15,9 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-8">
           <text className="text-lg font-black text-white">Contact Us</text>
-          <text className="text-sm text-white">+263 778 896 938</text>
+          <Link href="tel:+263778896938">
+           <text className="text-sm text-white" >+263 778 896 938</text>
+          </Link>
         </div>
       </div>
       <hr />
