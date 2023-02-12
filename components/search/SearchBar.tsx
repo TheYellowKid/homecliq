@@ -1,12 +1,19 @@
 import SqaureButton from "../buttons/SquareButton";
 import Input from "../inputs/Input";
-import { useState } from "react";
+import DropdownInput from "./DropdownInput";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { collection, getDocs } from "firebase/firestore";
+import { fireStore } from "../../firebase";
 
 export default function SearchBar() {
 
   const [searchbyType, setSearchbyType] = useState("");
   const [searchbyLocation, setSearchbyLocation] = useState("");
+  const [showPropertyTypeSuggestions, setShowPropertyTypeSuggestions]=useState(false)
+  const [showLocationSuggestions, setLocationSuggestions]=useState(false)
+  const [propertyTypes, setPropertyTypes] = useState<string[]>([])
+  const [availableLocations, setAavailableLocations] = useState<string[]>([])
 
   const router = useRouter();
 
@@ -20,6 +27,39 @@ export default function SearchBar() {
     });
   }
 
+  useEffect(() => {
+    if(searchbyType != "" && searchbyType != null){
+      setShowPropertyTypeSuggestions(true)
+    }else{
+      setShowPropertyTypeSuggestions(false)
+    }
+     if(searchbyLocation != "" && searchbyLocation != null){
+      setLocationSuggestions(true)
+    }else{
+      setLocationSuggestions(false)
+    }
+  },[searchbyLocation, searchbyType])
+
+  useEffect(() => {
+    getListings()
+  },[propertyTypes])
+
+  const getListings = async () => {
+    const propertytypes: string[] = [];
+    const locations: string[] = [];
+    await getDocs(collection(fireStore, "properties")).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().isApproved === true) {
+              propertytypes.push(doc.data().title);
+              locations.push(doc.data().towncity);
+        }
+      });
+    });
+    setPropertyTypes(propertytypes);
+    setAavailableLocations(locations);
+  };
+
+
   return (
     <form
       className="flex flex-col md:flex-row items-center justify-center gap-2 p-4 rounded"
@@ -29,8 +69,8 @@ export default function SearchBar() {
         handleSearch();
       }}
     >
-      <Input placeholder="Type (eg. one room)" onChange={e => setSearchbyType(e.target.value)} required={true} type="text"/>
-      <Input placeholder="Town/City (eg Gweru)" onChange={ e => setSearchbyLocation(e.target.value)} required={true} type="text"/>
+      <DropdownInput placeholder="Type (eg. one room)" options={propertyTypes} onChange={e => setSearchbyType(e.target.value)} showSuggestions={showPropertyTypeSuggestions} onOptionSelect={() => {}}/>
+      <DropdownInput placeholder="Town/City (eg Gweru)" options={availableLocations} onChange={ e => setSearchbyLocation(e.target.value)} showSuggestions={showLocationSuggestions} onOptionSelect={() => {}}/>
       <SqaureButton text="Search" onClick={() => {}} />
     </form>
   );

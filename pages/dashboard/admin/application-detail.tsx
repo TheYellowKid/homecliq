@@ -23,7 +23,7 @@ interface PropertyObject {
 
 export default function ApplicationDetails() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id , applicationid} = router.query;
   const [property, setProperty] = useState<PropertyObject>();
 
   const querySnapshot = getDocs(collection(fireStore, "properties"));
@@ -61,6 +61,7 @@ export default function ApplicationDetails() {
             id={id as string}
             location={property ? property.location : ""}
             towncity={property ? property.towncity : ""}
+            applicationid={applicationid as string}
           />
         </div>
         <div className="flex flex-col col-span-4 gap-4 p-4">

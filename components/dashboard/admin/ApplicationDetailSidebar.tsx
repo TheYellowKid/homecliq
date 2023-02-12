@@ -14,6 +14,7 @@ interface SidebarProps {
   agent: string;
   agentphone: string;
   agentemail: string;
+  applicationid:string;
 }
 export default function ApplicationDetailSideBar({
   title,
@@ -24,22 +25,32 @@ export default function ApplicationDetailSideBar({
   agent,
   agentemail,
   agentphone,
+  applicationid
 }: SidebarProps) {
 
   const router = useRouter()
 
-    const deleteListing = async (id: string) => {
-    if (confirm("Delete this listing?") === true) {
-      await deleteDoc(doc(fireStore, "applications", id))
-        .then(() => {
-          alert("Listing Deleted");
-          router.push("/dashboard/admin/applications");
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    }
-  };
+    const deleteApplication = async (id: string) => {
+      if (confirm("Delete this listing?") === true) {
+        await deleteDoc(doc(fireStore, "applications", id))
+          .then(() => {
+            alert("Listing Deleted");
+            router.push("/dashboard/admin/applications");
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+    };
+    const activateApplication = async (id: string) => {
+    const propertyRef = doc(fireStore, "applications", id);
+    await updateDoc(propertyRef, {
+      applicationstatus: "active",
+    }).then(() => {
+      alert("application activated")
+      router.push("/dashboard/admin/applications")
+    });
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -72,8 +83,8 @@ export default function ApplicationDetailSideBar({
           <span className="font-bold">Email:</span> {agentemail}
         </text>
         <div className="flex items-center justify-between">
-          <SqaureButton text="Activate" onClick={() => {}} />
-          <DeleteButton text="Delete" onClick={() => deleteListing(id)}/>
+          <SqaureButton text="Activate" onClick={() => activateApplication(applicationid)} />
+          <DeleteButton text="Delete" onClick={() => deleteApplication(applicationid)}/>
         </div>
       </div>
     </div>

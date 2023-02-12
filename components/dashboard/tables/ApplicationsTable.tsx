@@ -18,16 +18,20 @@ interface ApplicationObject {
 export default function ApplicationsTable() {
   const router = useRouter();
   const [applications, setApplications] = useState<ApplicationObject[]>([]);
+  const [applicationIds, setApplicationIds] = useState<string[]>([])
   const querySnapshot = getDocs(collection(fireStore, "applications"));
 
   const getListings = async () => {
     const data: ApplicationObject[] = [];
+    const ids: string[] = []
     await querySnapshot.then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         data.push(doc.data() as ApplicationObject);
+        ids.push(doc.id)
       });
     });
     setApplications(data);
+    setApplicationIds(ids)
   };
 
   useEffect(() => {
@@ -65,7 +69,7 @@ export default function ApplicationsTable() {
                   onClick={() =>
                     router.push({
                       pathname: "/dashboard/admin/application-detail",
-                      query: { id: application.propertyid },
+                      query: { id: application.propertyid, applicationid:applicationIds[i] },
                     })
                   }
                 >
