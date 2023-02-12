@@ -59,6 +59,12 @@ export default function SearchBar() {
     setAavailableLocations(locations);
   };
 
+  const selectedPropertyOption = (option: string):void => {
+    setSearchbyType(option)
+  }
+    const selectedLocatitonOption = (option: string):void => {
+    setSearchbyLocation(option)
+  }
 
   return (
     <form
@@ -69,8 +75,8 @@ export default function SearchBar() {
         handleSearch();
       }}
     >
-      <DropdownInput placeholder="Type (eg. one room)" options={propertyTypes} onChange={e => setSearchbyType(e.target.value)} showSuggestions={showPropertyTypeSuggestions} onOptionSelect={() => {}}/>
-      <DropdownInput placeholder="Town/City (eg Gweru)" options={availableLocations} onChange={ e => setSearchbyLocation(e.target.value)} showSuggestions={showLocationSuggestions} onOptionSelect={() => {}}/>
+      <DropdownInput placeholder="Type (eg. one room)" value={searchbyType} options={propertyTypes} onChange={e => setSearchbyType(e.target.value)} showSuggestions={showPropertyTypeSuggestions} onOptionSelect={selectedPropertyOption}/>
+      <DropdownInput placeholder="Town/City (eg Gweru)" value={searchbyLocation} options={availableLocations} onChange={ e => setSearchbyLocation(e.target.value)} showSuggestions={showLocationSuggestions} onOptionSelect={selectedLocatitonOption}/>
       <SqaureButton text="Search" onClick={() => {}} />
     </form>
   );
