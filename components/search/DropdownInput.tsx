@@ -30,7 +30,7 @@ export default function DropdownInput({
       {showSuggestions && (
         <div className="absolute w-full p-2 mt-1 bg-white rounded">
           {options.map((option) => (
-            <a href="#" onClick={() => onOptionSelect(option)}>{option}</a>
+            <a href="#" onClick={() => onOptionSelect(option)}>{option} <br/></a>
           ))}
         </div>
       )}
