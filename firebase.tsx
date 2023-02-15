@@ -4,13 +4,13 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCAtyn9-qa7Vao-KBlOGCxqYu2Vo8yQJg8",
-  authDomain: "homecliq-afbf6.firebaseapp.com",
-  projectId: "homecliq-afbf6",
-  storageBucket: "homecliq-afbf6.appspot.com",
-  messagingSenderId: "113051003804",
-  appId: "1:113051003804:web:858d375aef037a67c07659",
-  measurementId: "G-8JZ79VQQC5",
+  apiKey: "AIzaSyBB8VLAB4tmvc0FASmiH8IiIZYhd3m896U",
+  authDomain: "homeclicq.firebaseapp.com",
+  projectId: "homeclicq",
+  storageBucket: "homeclicq.appspot.com",
+  messagingSenderId: "216204011541",
+  appId: "1:216204011541:web:44a7b6aa18bf0d1d31061c",
+  measurementId: "G-VGFP2LGNMF"
 };
 let firebaseApp;
 

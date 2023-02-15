@@ -49,7 +49,7 @@ export default function SignUpForm() {
         Fill in this form to create yout account.
       </text>
       <form
-        className="flex-col md:grid md:grid-cols-2"
+        className="flex-col md:grid md:grid-cols-2 gap-2"
         onSubmit={(e) => {
           e.preventDefault();
           signUpUser();
