@@ -27,11 +27,13 @@ export default function AdminDashboardSidebar() {
 
   return (
     <div className="flex flex-col p-4 bg-white rounded shadow">
-      <div className="flex items-center justify-center p-4">
+      <Link href="/">
+        <div className="flex items-center justify-center p-4">
         <text className="text-2xl font-black tracking-tight text-blue-900">
           HOMECLICK
         </text>
       </div>
+      </Link>
       <div className="flex flex-col gap-4 p-4">
         <Link href="/dashboard/admin/">
           <div className="flex items-center gap-4">

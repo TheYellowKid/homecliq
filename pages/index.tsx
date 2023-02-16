@@ -3,17 +3,15 @@ import Banner from "../components/banner/Banner";
 import FeaturedProperties from "../components/pages/home/FeaturedProperties";
 import LandlordSection from "../components/pages/home/LandlordSection";
 import FeedBackSection from "../components/pages/home/FeedbackSection";
-import Footer from "../components/footer/Footer";
+import AppLayout from "../components/layouts/AppLayout";
 
 export default function Index() {
   return (
-    <div className="flex flex-col w-screen font-quicksand">
-      <Navbar />
+    <AppLayout>
       <Banner />
       <FeaturedProperties />
       <LandlordSection />
       <FeedBackSection />
-      <Footer />
-    </div>
+    </AppLayout>
   );
 }

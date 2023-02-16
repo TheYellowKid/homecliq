@@ -4,6 +4,7 @@ import { collection, doc, getDocs } from "firebase/firestore";
 import { fireStore } from "../../../firebase";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { BsCheckCircleFill } from 'react-icons/bs';
 
 interface PropertyObject {
   contactmethod: string;
@@ -18,6 +19,7 @@ interface PropertyObject {
   rent: number;
   title: string;
   towncity: string;
+  amenities:[string];
 }
 export default function PropertyDetail() {
   const router = useRouter();
@@ -56,9 +58,19 @@ export default function PropertyDetail() {
           id={id as string}
         />
       </div>
-      <div className="flex flex-col col-span-4 gap-4 p-4">
-        <text className="text-xl font-bold">Description</text>
-        <text className="text-base">{property?.description}</text>
+      <div className="flex flex-col col-span-4 gap-4 p-4 border-2 border-gray-200 rounded">
+        <div className="flex flex-col">
+          <text className="text-xl font-bold">Description</text>
+          <text className="text-base">{property?.description}</text>
+        </div>
+         <div className="flex flex-col">
+          <text className="text-xl font-bold">Amenities</text>
+          <div className="grid grid-cols-2 md: grid-cols-4">
+             {property?.amenities.map((amenity, i) => (
+              <text key={i} className="flex flex-row gap-1 items-center"><BsCheckCircleFill /> {amenity}</text>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

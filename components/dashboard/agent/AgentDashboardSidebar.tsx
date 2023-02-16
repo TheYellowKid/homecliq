@@ -27,11 +27,13 @@ export default function AgentDashboardSidebar() {
 
   return (
     <div className="md:flex md:flex-col p-4 bg-white rounded shadow hidden ">
-      <div className="flex items-center justify-center p-4">
+      <Link href="/">
+        <div className="flex items-center justify-center p-4">
         <text className="text-2xl font-black tracking-tight text-blue-900">
           HOMECLICK
         </text>
       </div>
+      </Link>
       <div className="flex flex-col gap-4 p-4">
         <Link href="/dashboard/agent/">
           <div className="flex items-center gap-4">

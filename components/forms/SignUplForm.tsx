@@ -93,7 +93,7 @@ export default function SignUpForm() {
         />
 
         <div className="flex flex-col col-span-2">
-          <SqaureButton text="Login" onClick={() => {}} />
+          <SqaureButton text="Sign Up" onClick={() => {}} />
         </div>
 
         <div className="col-span-2">
