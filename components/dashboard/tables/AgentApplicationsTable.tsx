@@ -6,6 +6,7 @@ import { StyledBadge } from "../../badges/StyledBadges";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { fireStore } from "../../../firebase";
+import { BsWhatsapp } from 'react-icons/bs';
 
 interface ApplicationObject {
   applicantemail: string;
@@ -57,7 +58,10 @@ export default function AgentApplicationsTable() {
               <Table.Cell>
                 {application.applicantname} {application.applicantsurname}
               </Table.Cell>
-              <Table.Cell>{application.applicantphone}</Table.Cell>
+              <Table.Cell>
+                {application.applicationstatus === "active" && <BsWhatsapp />}
+                {application.applicantphone}
+              </Table.Cell>
               <Table.Cell>
                 <StyledBadge type={application.applicationstatus === "pending"? "pending" : application.applicationstatus === "open"? "open" : "closed" }>{application.applicationstatus}</StyledBadge>
               </Table.Cell>

@@ -6,6 +6,8 @@ import { StyledBadge } from "../../badges/StyledBadges";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { fireStore } from "../../../firebase";
+import { BsWhatsapp, BsTelephone } from 'react-icons/bs';
+import Link from "next/link";
 
 interface ApplicationObject {
   applicantemail: string;
@@ -60,7 +62,22 @@ export default function ApplicationsTable() {
               <Table.Cell>
                 {application.applicantname} {application.applicantsurname}
               </Table.Cell>
-              <Table.Cell>{application.applicantphone}</Table.Cell>
+              <Table.Cell>
+                <div className="flex flex-row items-center gap-2">
+                  {application.applicantphone}
+                  {application.applicationstatus === "active" && 
+                    <div className="items-center justify-center flex flex-row gap-2">
+                      <Link href={`https://wa.me/${application.applicantphone}`}>
+                        <BsWhatsapp />
+                      </Link>
+                      <Link href={`tel:${application.applicantphone}`}>
+                        <BsTelephone />
+                      </Link>
+                    </div>                  
+                  }
+                  
+                </div>
+              </Table.Cell>
               <Table.Cell>
                 <StyledBadge type={application.applicationstatus === "pending"? "pending" : application.applicationstatus === "open"? "open" : "closed" }>{application.applicationstatus}</StyledBadge>
               </Table.Cell>
