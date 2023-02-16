@@ -2,7 +2,7 @@ import SqaureButton from "../buttons/SquareButton";
 import Input from "../inputs/Input";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { fireStore } from "../../firebase";
 import { async } from "@firebase/util";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -19,24 +19,43 @@ export default function TenandApplicationForm({ id, owneremail }: PropertyId) {
   const [lastname, setLastname] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [email, setEmail] = useState("");
+  const [applicationFound, setApplicationFound] = useState(false)
+
+
+  const checkApplicationExists = async () => {
+    await  getDocs(collection(fireStore, "applications")).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if(doc.data().propertyid === id && doc.data().applicantphone === phonenumber && doc.data().applicantemail === email){
+          setApplicationFound(true)
+        }
+      });
+    });
+    return applicationFound
+  }
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      const application = addDoc(collection(fireStore, "applications"), {
-        applicantname: firstname,
-        applicantsurname: lastname,
-        applicantemail: email,
-        applicantphone: phonenumber as string,
-        propertyid: id,
-        owneremail: owneremail,
-        applicationstatus: "pending",
-      });
-      router.push("/application-success");
-    } catch (error) {
-      alert("Error adding document: " + error);
-      console.log(error);
+    checkApplicationExists()
+      if(applicationFound){
+        try {
+        const application = addDoc(collection(fireStore, "applications"), {
+          applicantname: firstname,
+          applicantsurname: lastname,
+          applicantemail: email,
+          applicantphone: phonenumber as string,
+          propertyid: id,
+          owneremail: owneremail,
+          applicationstatus: "pending",
+        });
+        router.push("/application-success");
+      } catch (error) {
+        alert("Error adding document: " + error);
+        console.log(error);
+      }
+    }else {
+      alert("an application under this email and phone number already Exist!")
     }
+   
   };
 
   return (
