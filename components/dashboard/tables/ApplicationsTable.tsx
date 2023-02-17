@@ -86,7 +86,7 @@ export default function ApplicationsTable() {
                   onClick={() =>
                     router.push({
                       pathname: "/dashboard/admin/application-detail",
-                      query: { id: application.propertyid, applicationid:applicationIds[i] },
+                      query: { id: application.propertyid, applicationid:applicationIds[i], applicationstatus:application.applicationstatus},
                     })
                   }
                 >

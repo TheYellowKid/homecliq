@@ -15,6 +15,7 @@ interface SidebarProps {
   agentphone: string;
   agentemail: string;
   applicationid:string;
+  applicationstatus:string
 }
 export default function ApplicationDetailSideBar({
   title,
@@ -25,7 +26,8 @@ export default function ApplicationDetailSideBar({
   agent,
   agentemail,
   agentphone,
-  applicationid
+  applicationid,
+  applicationstatus
 }: SidebarProps) {
 
   const router = useRouter()
@@ -82,10 +84,14 @@ export default function ApplicationDetailSideBar({
         <text>
           <span className="font-bold">Email:</span> {agentemail}
         </text>
-        <div className="flex items-center justify-between">
+        {applicationstatus !== "active" ? 
+          <div className="flex items-center justify-between">
           <SqaureButton text="Activate" onClick={() => activateApplication(applicationid)} />
           <DeleteButton text="Delete" onClick={() => deleteApplication(applicationid)}/>
-        </div>
+        </div>:
+        <div className="items-center justify-center w-full flex flex-row">
+          <SqaureButton text="Close Application" onClick={()=>{}} />
+        </div>}
       </div>
     </div>
   );
