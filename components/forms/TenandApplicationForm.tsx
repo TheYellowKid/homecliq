@@ -33,10 +33,10 @@ export default function TenandApplicationForm({ id, owneremail }: PropertyId) {
     return applicationFound
   }
 
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    checkApplicationExists()
-      if(applicationFound){
+    await checkApplicationExists()
+      if(!applicationFound){
         try {
         const application = addDoc(collection(fireStore, "applications"), {
           applicantname: firstname,
