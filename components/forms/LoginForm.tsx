@@ -7,7 +7,10 @@ import { auth, fireStore } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
 
-export default function LoginForm() {
+interface FormProps {
+  startLoading : ()=> void
+}
+export default function LoginForm({startLoading}:FormProps) {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -42,7 +45,7 @@ export default function LoginForm() {
     });
   };
   const signIn = () => {
-    console.log("signing in");
+    startLoading();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
