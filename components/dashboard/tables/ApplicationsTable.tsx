@@ -41,28 +41,23 @@ export default function ApplicationsTable() {
   }, []);
 
   return (
-    <Table
-      aria-label="Example table with static content"
-      css={{
-        height: "auto",
-        minWidth: "100%",
-        zIndex:0
-      }}
-    >
-      <Table.Header>
-        <Table.Column>Applicant Name</Table.Column>
-        <Table.Column>Phone Number</Table.Column>
-        <Table.Column>Status</Table.Column>
-        <Table.Column>View</Table.Column>
-      </Table.Header>
-      <Table.Body>
+    <table className="w-full border-2 border-gray-500 p-4 rounded">
+      <thead>
+        <tr className="font-bold text-white bg-blue-900">
+          <td className="2">Applicant Name</td>
+          <td className="2">Phone Number</td>
+          <td className="2">Status</td>
+          <td className="2">View</td>
+        </tr>
+      </thead>
+      <tbody>
         {applications.length > 0 ? (
           applications.map((application, i) => (
-            <Table.Row key={i}>
-              <Table.Cell>
+            <tr key={i}>
+              <td className="2">
                 {application.applicantname} {application.applicantsurname}
-              </Table.Cell>
-              <Table.Cell>
+              </td>
+              <td className="2">
                 <div className="flex flex-row items-center gap-2">
                   {application.applicantphone}
                   {application.applicationstatus === "active" && 
@@ -77,11 +72,11 @@ export default function ApplicationsTable() {
                   }
                   
                 </div>
-              </Table.Cell>
-              <Table.Cell>
+              </td>
+              <td>
                 <StyledBadge type={application.applicationstatus === "pending"? "pending" : application.applicationstatus === "open"? "open" : "closed" }>{application.applicationstatus}</StyledBadge>
-              </Table.Cell>
-              <Table.Cell>
+              </td>
+              <td className="2">
                 <IconButton
                   onClick={() =>
                     router.push({
@@ -92,18 +87,18 @@ export default function ApplicationsTable() {
                 >
                   <EyeOpenIcon />
                 </IconButton>
-              </Table.Cell>
-            </Table.Row>
+              </td>
+            </tr>
           ))
         ) : (
-          <Table.Row>
-            <Table.Cell>No Applications found</Table.Cell>
-            <Table.Cell>{""}</Table.Cell>
-            <Table.Cell>{""}</Table.Cell>
-            <Table.Cell>{""}</Table.Cell>
-          </Table.Row>
+          <tr>
+            <td className="2">No Applications found</td>
+            <td className="2">{""}</td>
+            <td className="2">{""}</td>
+            <td className="2">{""}</td>
+          </tr>
         )}
-      </Table.Body>
-    </Table>
+      </tbody>
+    </table>
   );
 }
