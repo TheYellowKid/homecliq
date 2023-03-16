@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon,} from "@radix-ui/react-icons";
+import Image from "next/image";
 
 export default function Navbar() {
 
@@ -10,11 +11,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className="sticky top-0 flex flex-wrap items-center justify-between w-screen p-6 bg-white shadow z-10"
+      className="sticky top-0 flex flex-wrap items-center justify-between w-screen px-6 bg-white shadow z-10"
     >
       <div className="flex items-center flex-shrink-0 mr-6 text-blue-900">
         <Link href="/">
-          <text className="text-2xl font-black tracking-tight">HOMECLIQ</text>
+          <Image src="/assets/logo.png" height={60} width={200} alt="logo" />
         </Link>
       </div>
       <div className="block lg:hidden">
