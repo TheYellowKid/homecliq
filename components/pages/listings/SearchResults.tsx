@@ -24,24 +24,24 @@ interface SearchResultsFilters {
   location: string;
 }
 
-export default function SearchResultsTab({type, location}: SearchResultsFilters) {
+export default function SearchResultsTab({ type, location }: SearchResultsFilters) {
   const [listings, setListings] = useState<PropertyObject[]>([]);
   const [propertyIds, setPropertyIds] = useState<string[]>([]);
 
-  
+
   const getListings = async () => {
     const data: PropertyObject[] = [];
     const ids: string[] = [];
-    await getDocs(query(collection(fireStore, "properties"), where("title",">=", type))).then((querySnapshot) => {
+    await getDocs(query(collection(fireStore, "properties"), where("title", ">=", type))).then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (doc.data().isApproved === true) {
-                console.log("tapinda")
-                console.log("location =>", location, "data.location =>",doc.data().towncity)
-              if(doc.data().towncity === location){
-                console.log("takaenda")
-                data.push(doc.data() as PropertyObject);
-                ids.push(doc.id);
-              }
+          console.log("tapinda")
+          console.log("location =>", location, "data.location =>", doc.data().towncity)
+          if (doc.data().towncity === location) {
+            console.log("takaenda")
+            data.push(doc.data() as PropertyObject);
+            ids.push(doc.id);
+          }
         }
       });
     });
@@ -62,7 +62,7 @@ export default function SearchResultsTab({type, location}: SearchResultsFilters)
   };
 
   return (
-    <div className="flex flex-col p-4 md:py-32 md:px-96">
+    <div className="flex flex-col p-4 md:py-32 md:px-32">
       <div className="flex items-center justify-between">
         <div>
           <PageFilter placeholder="Most Recent" options={[]} />
@@ -73,7 +73,7 @@ export default function SearchResultsTab({type, location}: SearchResultsFilters)
           listings.map((property, i) => (
             <PropertyCard
               title={property.title}
-              image={property.images.length > 0? property.images[0]:"/assets/home.jpg"}
+              image={property.images.length > 0 ? property.images[0] : "/assets/home.jpg"}
               rent={property.rent}
               location={property.location}
               towncity={property.towncity}

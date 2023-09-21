@@ -19,7 +19,7 @@ interface PropertyObject {
   rent: number;
   title: string;
   towncity: string;
-  amenities:[string];
+  amenities: [string];
 }
 export default function PropertyDetail() {
   const router = useRouter();
@@ -44,9 +44,9 @@ export default function PropertyDetail() {
   }, []);
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-4 md:py-32 p-4 md:px-96 gap-4">
+    <div className="flex flex-col md:grid md:grid-cols-4 md:py-32 p-4 md:px-32 gap-4">
       <div className="flex flex-col col-span-3">
-        <PropetyGallery images={property?  property.images.length > 0 ? property.images : ["/assets/home.jpg"] : ["/assets/home.jpg"]}  />
+        <PropetyGallery images={property ? property.images.length > 0 ? property.images : ["/assets/home.jpg"] : ["/assets/home.jpg"]} />
       </div>
       <div>
         <PropertyDetailSideBar
@@ -63,10 +63,10 @@ export default function PropertyDetail() {
           <text className="text-xl font-bold">Description</text>
           <text className="text-base">{property?.description}</text>
         </div>
-         <div className="flex flex-col">
+        <div className="flex flex-col">
           <text className="text-xl font-bold">Amenities</text>
           <div className="grid grid-cols-2 md: grid-cols-4">
-             {property?.amenities.map((amenity, i) => (
+            {property?.amenities.map((amenity, i) => (
               <text key={i} className="flex flex-row gap-1 items-center"><BsCheckCircleFill /> {amenity}</text>
             ))}
           </div>
