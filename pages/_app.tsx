@@ -8,7 +8,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className="bg-gray-100 font-quicksand">
       <Head>
         <Script
-          id="ms_clarity"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
