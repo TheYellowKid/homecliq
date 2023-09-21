@@ -30,8 +30,8 @@ export default function ListingsTab() {
     await querySnapshot.then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (doc.data().isApproved === true) {
-              data.push(doc.data() as PropertyObject);
-              ids.push(doc.id);
+          data.push(doc.data() as PropertyObject);
+          ids.push(doc.id);
         }
       });
     });
@@ -52,7 +52,7 @@ export default function ListingsTab() {
   };
 
   return (
-    <div className="flex flex-col p-4 md:py-32 md:px-96">
+    <div className="flex flex-col p-4 md:py-32 md:px-32">
       <div className="flex items-center justify-between">
         <div>
           <PageFilter placeholder="Most Recent" options={[]} />
@@ -63,7 +63,7 @@ export default function ListingsTab() {
           listings.map((property, i) => (
             <PropertyCard
               title={property.title}
-              image={property.images.length > 0? property.images[0]:"/assets/home.jpg"}
+              image={property.images.length > 0 ? property.images[0] : "/assets/home.jpg"}
               rent={property.rent}
               location={property.location}
               towncity={property.towncity}
