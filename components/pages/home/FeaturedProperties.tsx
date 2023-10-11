@@ -51,14 +51,14 @@ export default function FeaturedProperties() {
         ..Featured Properties..
       </text>
       <text className="text-xl md:text-4xl font-bold text-center">Explore Properties</text>
-      <div className="flex flex-col md:grid w-full md:grid-cols-3 gap-4 px-4 md:px-64">
+      <div className="flex flex-col md:grid w-full md:grid-cols-3 gap-4 px-4 md:px-32">
         {featuredListings.length > 0 ? (
           featuredListings
             .slice(0, 3)
             .map((property, i) => (
               <PropertyCard
                 title={property.title}
-                image={property.images.length > 0? property.images[0]:"/assets/home.jpg"}
+                image={property.images.length > 0 ? property.images[0] : "/assets/home.jpg"}
                 rent={property.rent}
                 location={property.location}
                 towncity={property.towncity}
