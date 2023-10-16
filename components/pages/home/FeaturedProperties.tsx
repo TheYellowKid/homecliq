@@ -48,7 +48,7 @@ export default function FeaturedProperties() {
   return (
     <div className="flex flex-col items-center gap-4 py-8">
       <text className="text-sm md:text-xl font-semibold text-blue-900 text-center">
-        ..Featured Properties..
+        ...Featured Properties...
       </text>
       <text className="text-xl md:text-4xl font-bold text-center">Explore Properties</text>
       <div className="flex flex-col md:grid w-full md:grid-cols-3 gap-4 px-4 md:px-32">
